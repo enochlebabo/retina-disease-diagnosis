@@ -6,9 +6,10 @@ import { useAuth } from '../contexts/AuthContext';
 interface AuthGuardProps {
   children: React.ReactNode;
   requiredRole?: 'admin' | 'user';
+  requireAuth?: boolean;
 }
 
-const AuthGuard: React.FC<AuthGuardProps> = ({ children, requiredRole }) => {
+const AuthGuard: React.FC<AuthGuardProps> = ({ children, requiredRole, requireAuth = true }) => {
   const { user, isLoading } = useAuth();
 
   if (isLoading) {
@@ -19,13 +20,18 @@ const AuthGuard: React.FC<AuthGuardProps> = ({ children, requiredRole }) => {
     );
   }
 
+  // If authentication is not required, render children regardless of auth state
+  if (!requireAuth) {
+    return <>{children}</>;
+  }
+
   if (!user) {
     return <Navigate to="/login" replace />;
   }
 
   if (requiredRole && user.role !== requiredRole) {
     // Redirect based on user role
-    const redirectPath = user.role === 'admin' ? '/admin/dashboard' : '/';
+    const redirectPath = user.role === 'admin' ? '/admin/dashboard' : '/dashboard';
     return <Navigate to={redirectPath} replace />;
   }
 

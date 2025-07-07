@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import AuthGuard from "./components/AuthGuard";
+import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import AdminLayout from "./layouts/AdminLayout";
@@ -31,6 +32,8 @@ const App = () => (
         <BrowserRouter>
           <div className="min-h-screen bg-gray-50">
             <Routes>
+              {/* Public Routes */}
+              <Route path="/" element={<LandingPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
               
@@ -50,19 +53,36 @@ const App = () => (
               } />
               
               {/* User Routes */}
-              <Route path="/*" element={
+              <Route path="/dashboard" element={
                 <AuthGuard requiredRole="user">
                   <UserLayout>
-                    <Routes>
-                      <Route path="/" element={<UserDashboard />} />
-                      <Route path="/analysis" element={<Analysis />} />
-                      <Route path="/education" element={<Education />} />
-                      <Route path="/profile" element={<UserProfile />} />
-                      <Route path="*" element={<NotFound />} />
-                    </Routes>
+                    <UserDashboard />
                   </UserLayout>
                 </AuthGuard>
               } />
+              <Route path="/analysis" element={
+                <AuthGuard requiredRole="user">
+                  <UserLayout>
+                    <Analysis />
+                  </UserLayout>
+                </AuthGuard>
+              } />
+              <Route path="/education" element={
+                <AuthGuard requiredRole="user">
+                  <UserLayout>
+                    <Education />
+                  </UserLayout>
+                </AuthGuard>
+              } />
+              <Route path="/profile" element={
+                <AuthGuard requiredRole="user">
+                  <UserLayout>
+                    <UserProfile />
+                  </UserLayout>
+                </AuthGuard>
+              } />
+              
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
         </BrowserRouter>

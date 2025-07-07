@@ -12,7 +12,7 @@ const UserLayout: React.FC<UserLayoutProps> = ({ children }) => {
   const { user, logout } = useAuth();
 
   const navItems = [
-    { path: '/', icon: Home, label: 'Dashboard' },
+    { path: '/dashboard', icon: Home, label: 'Dashboard' },
     { path: '/analysis', icon: Upload, label: 'Analysis' },
     { path: '/education', icon: BookOpen, label: 'Education' },
     { path: '/profile', icon: User, label: 'Profile' }
