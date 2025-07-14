@@ -1,12 +1,13 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
+import { useTheme } from 'next-themes';
 import { 
   Eye, Brain, Zap, Shield, Target, Users, BarChart3, BookOpen, ArrowRight, 
   CheckCircle, Camera, Upload, Activity, AlertTriangle, Heart, Microscope, 
   Phone, Mail, MapPin, Play, Video, Server, Code, Database, Cpu, Cloud, 
   Lock, Monitor, Bot, Stethoscope, Scan, ChevronRight, Star, Award, 
   TrendingUp, MessageSquare, Clock, FileText, UserCheck, Wifi, Smartphone,
-  Github, Linkedin, Twitter, Globe, Menu, X
+  Github, Linkedin, Twitter, Globe, Menu, X, Sun, Moon
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -18,6 +19,7 @@ const LandingPage = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { theme, setTheme } = useTheme();
 
   const navigation = [
     { name: 'Overview', id: 'overview', icon: Eye },
@@ -230,68 +232,93 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
-      {/* Modern Navigation */}
-      <nav className="bg-white/80 backdrop-blur-lg shadow-xl border-b border-blue-100 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            {/* Logo */}
-            <div className="flex items-center space-x-4">
-              <div className="gradient-medical p-3 rounded-2xl shadow-lg">
-                <Eye className="h-8 w-8 text-white" />
+    <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10 dark:opacity-5"
+        style={{
+          backgroundImage: `url('/lovable-uploads/33c00090-f808-422f-9713-d27ae9eb25cd.png')`
+        }}
+      />
+      
+      {/* Background Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/90 to-background/95" />
+      
+      {/* Content */}
+      <div className="relative z-10">
+        {/* Modern Navigation */}
+        <nav className="bg-card/80 backdrop-blur-lg shadow-xl border-b border-border sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center h-20">
+              {/* Logo */}
+              <div className="flex items-center space-x-4">
+                <div className="bg-gradient-to-r from-primary to-primary-foreground p-3 rounded-2xl shadow-lg">
+                  <Eye className="h-8 w-8 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-2xl font-bold text-foreground">Reti-Doc</h1>
+                  <p className="text-sm text-primary font-medium">AI-Powered Retinal Intelligence</p>
+                </div>
               </div>
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">Reti-Doc</h1>
-                <p className="text-sm text-blue-600 font-medium">AI-Powered Retinal Intelligence</p>
+              
+              {/* Desktop Navigation */}
+              <div className="hidden lg:flex items-center space-x-8">
+                {navigation.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => setActiveTab(item.id)}
+                    className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                      activeTab === item.id
+                        ? 'bg-primary text-primary-foreground shadow-lg'
+                        : 'text-foreground hover:bg-accent hover:text-accent-foreground'
+                    }`}
+                  >
+                    <item.icon className="h-4 w-4" />
+                    <span>{item.name}</span>
+                  </button>
+                ))}
               </div>
-            </div>
-            
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-8">
-              {navigation.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => setActiveTab(item.id)}
-                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
-                    activeTab === item.id
-                      ? 'bg-blue-500 text-white shadow-lg'
-                      : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'
-                  }`}
+              
+              {/* Theme Toggle & Auth Buttons */}
+              <div className="hidden lg:flex items-center space-x-4">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                  className="p-2"
                 >
-                  <item.icon className="h-4 w-4" />
-                  <span>{item.name}</span>
-                </button>
-              ))}
-            </div>
-            
-            {/* Auth Buttons */}
-            <div className="hidden lg:flex items-center space-x-4">
-              <Link to="/login">
-                <Button variant="outline" className="btn-outline-medical">
-                  Sign In
+                  {theme === 'dark' ? (
+                    <Sun className="h-4 w-4" />
+                  ) : (
+                    <Moon className="h-4 w-4" />
+                  )}
                 </Button>
-              </Link>
-              <Link to="/register">
-                <Button className="btn-medical">
-                  Get Started
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-            </div>
+                <Link to="/login">
+                  <Button variant="outline" className="btn-outline-medical">
+                    Sign In
+                  </Button>
+                </Link>
+                <Link to="/register">
+                  <Button className="btn-medical">
+                    Get Started
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              className="lg:hidden p-2 rounded-lg hover:bg-gray-100"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
+              {/* Mobile Menu Button */}
+              <button
+                className="lg:hidden p-2 rounded-lg hover:bg-accent"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
+            </div>
           </div>
-        </div>
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-gray-200 bg-white/95 backdrop-blur-lg">
+          <div className="lg:hidden border-t border-border bg-card/95 backdrop-blur-lg">
             <div className="px-4 py-4 space-y-2">
               {navigation.map((item) => (
                 <button
@@ -302,15 +329,33 @@ const LandingPage = () => {
                   }}
                   className={`flex items-center space-x-3 w-full px-4 py-3 rounded-lg transition-all ${
                     activeTab === item.id
-                      ? 'bg-blue-500 text-white'
-                      : 'text-gray-700 hover:bg-blue-50'
+                      ? 'bg-primary text-primary-foreground'
+                      : 'text-foreground hover:bg-accent hover:text-accent-foreground'
                   }`}
                 >
                   <item.icon className="h-5 w-5" />
                   <span>{item.name}</span>
                 </button>
               ))}
-              <div className="pt-4 border-t border-gray-200 space-y-2">
+              <div className="pt-4 border-t border-border space-y-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                  className="w-full mb-2"
+                >
+                  {theme === 'dark' ? (
+                    <>
+                      <Sun className="mr-2 h-4 w-4" />
+                      Light Mode
+                    </>
+                  ) : (
+                    <>
+                      <Moon className="mr-2 h-4 w-4" />
+                      Dark Mode
+                    </>
+                  )}
+                </Button>
                 <Link to="/login" className="block">
                   <Button variant="outline" className="w-full">Sign In</Button>
                 </Link>
@@ -323,63 +368,63 @@ const LandingPage = () => {
         )}
       </nav>
 
-      {/* Hero Section */}
-      <section className="pt-20 pb-32 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <Badge className="mb-6 px-4 py-2 text-sm font-medium bg-blue-100 text-blue-800 border-blue-200">
-              <Activity className="h-4 w-4 mr-2" />
-              AI-Powered Medical Diagnosis
-            </Badge>
-            
-            <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight">
-              Revolutionizing <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500">
-                Retinal Healthcare
-              </span>
-            </h1>
-            
-            <p className="text-xl lg:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
-              Advanced AI-powered retinal disease detection using cutting-edge deep learning. 
-              Real-time camera scanning with <span className="text-blue-600 font-semibold">96.1% accuracy</span> 
-              validated on medical datasets.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row justify-center gap-6 mb-16">
-              <Link to="/register">
-                <Button size="lg" className="btn-medical text-lg px-8 py-4 h-auto">
-                  Start Free Analysis
-                  <ArrowRight className="ml-2 h-5 w-5" />
+        {/* Hero Section */}
+        <section className="pt-20 pb-32 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <Badge className="mb-6 px-4 py-2 text-sm font-medium bg-primary/10 text-primary border-primary/20">
+                <Activity className="h-4 w-4 mr-2" />
+                AI-Powered Medical Diagnosis
+              </Badge>
+              
+              <h1 className="text-5xl lg:text-7xl font-bold text-foreground mb-8 leading-tight">
+                Revolutionizing <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary">
+                  Retinal Healthcare
+                </span>
+              </h1>
+              
+              <p className="text-xl lg:text-2xl text-muted-foreground mb-12 max-w-4xl mx-auto leading-relaxed">
+                Advanced AI-powered retinal disease detection using cutting-edge deep learning. 
+                Real-time camera scanning with <span className="text-primary font-semibold">96.1% accuracy</span> 
+                validated on medical datasets.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row justify-center gap-6 mb-16">
+                <Link to="/register">
+                  <Button size="lg" className="btn-medical text-lg px-8 py-4 h-auto">
+                    Start Free Analysis
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="btn-outline-medical text-lg px-8 py-4 h-auto"
+                  onClick={() => setActiveTab('scan')}
+                >
+                  Try Live Scan
+                  <Video className="ml-2 h-5 w-5" />
                 </Button>
-              </Link>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="btn-outline-medical text-lg px-8 py-4 h-auto"
-                onClick={() => setActiveTab('scan')}
-              >
-                Try Live Scan
-                <Video className="ml-2 h-5 w-5" />
-              </Button>
-            </div>
-            
-            {/* Statistics */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto">
-              {stats.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="flex justify-center mb-2">
-                    <div className="gradient-medical p-3 rounded-full">
-                      <stat.icon className="h-6 w-6 text-white" />
+              </div>
+              
+              {/* Statistics */}
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto">
+                {stats.map((stat, index) => (
+                  <div key={index} className="text-center">
+                    <div className="flex justify-center mb-2">
+                      <div className="gradient-medical p-3 rounded-full">
+                        <stat.icon className="h-6 w-6 text-white" />
+                      </div>
                     </div>
+                    <div className="text-3xl lg:text-4xl font-bold text-foreground">{stat.value}</div>
+                    <div className="text-sm text-muted-foreground font-medium">{stat.label}</div>
                   </div>
-                  <div className="text-3xl lg:text-4xl font-bold text-gray-900">{stat.value}</div>
-                  <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
       {/* Tab Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
@@ -860,66 +905,67 @@ const LandingPage = () => {
         )}
       </div>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="gradient-medical p-2 rounded-lg">
-                  <Eye className="h-6 w-6 text-white" />
+        {/* Footer */}
+        <footer className="bg-gray-900 text-white py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              <div>
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="gradient-medical p-2 rounded-lg">
+                    <Eye className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold">Reti-Doc</h3>
+                    <p className="text-sm text-gray-400">AI-Powered Retinal Intelligence</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-xl font-bold">Reti-Doc</h3>
-                  <p className="text-sm text-gray-400">AI-Powered Retinal Intelligence</p>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Revolutionizing retinal healthcare through advanced artificial intelligence and medical expertise.
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-semibold mb-4">Product</h4>
+                <ul className="space-y-2 text-sm text-gray-400">
+                  <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
+                  <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
+                  <li><a href="#" className="hover:text-white transition-colors">API</a></li>
+                  <li><a href="#" className="hover:text-white transition-colors">Documentation</a></li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-semibold mb-4">Company</h4>
+                <ul className="space-y-2 text-sm text-gray-400">
+                  <li><a href="#" className="hover:text-white transition-colors">About</a></li>
+                  <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
+                  <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
+                  <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-semibold mb-4">Connect</h4>
+                <div className="flex space-x-4">
+                  <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                    <Twitter className="h-5 w-5" />
+                  </a>
+                  <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                    <Github className="h-5 w-5" />
+                  </a>
+                  <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                    <Linkedin className="h-5 w-5" />
+                  </a>
                 </div>
               </div>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                Revolutionizing retinal healthcare through advanced artificial intelligence and medical expertise.
-              </p>
             </div>
             
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Product</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">API</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Documentation</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Company</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">About</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Connect</h4>
-              <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  <Twitter className="h-5 w-5" />
-                </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  <Github className="h-5 w-5" />
-                </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  <Linkedin className="h-5 w-5" />
-                </a>
-              </div>
+            <div className="border-t border-gray-800 mt-12 pt-8 text-center text-sm text-gray-400">
+              <p>&copy; 2024 Reti-Doc. All rights reserved. | Privacy Policy | Terms of Service</p>
             </div>
           </div>
-          
-          <div className="border-t border-gray-800 mt-12 pt-8 text-center text-sm text-gray-400">
-            <p>&copy; 2024 Reti-Doc. All rights reserved. | Privacy Policy | Terms of Service</p>
-          </div>
-        </div>
-      </footer>
+        </footer>
+      </div>
     </div>
   );
 };

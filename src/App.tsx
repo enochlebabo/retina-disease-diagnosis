@@ -30,7 +30,7 @@ const App = () => (
       <Sonner />
       <AuthProvider>
         <BrowserRouter>
-          <div className="min-h-screen bg-gray-50">
+          <div className="min-h-screen bg-background">
             <Routes>
               {/* Public Routes */}
               <Route path="/" element={<LandingPage />} />
