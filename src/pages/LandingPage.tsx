@@ -828,61 +828,19 @@ const LandingPage = () => {
 
         {/* Chat Support Tab */}
         {activeTab === 'chat' && (
-          <div className="space-y-20">
-            <section>
-              <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-                  AI Medical Assistant
-                </h2>
-                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                  Get instant medical guidance and support from our AI-powered chatbot
-                </p>
-              </div>
-              
-              <div className="max-w-4xl mx-auto">
-                <Card className="card-neural">
-                  <CardHeader className="text-center">
-                    <CardTitle className="text-2xl font-bold flex items-center justify-center space-x-2">
-                      <Bot className="h-8 w-8 text-primary" />
-                      <span>Reti-Doc AI Assistant</span>
-                    </CardTitle>
-                    <CardDescription>
-                      Ask questions about retinal health, prevention, or our diagnostic system
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="text-center">
-                    <div className="mb-8">
-                      <Button 
-                        onClick={() => setIsChatBotOpen(true)} 
-                        className="btn-neural text-lg px-8 py-4 h-auto"
-                        size="lg"
-                      >
-                        <MessageSquare className="mr-2 h-6 w-6" />
-                        Start Chat Session
-                      </Button>
-                    </div>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      <div className="card-medical p-6">
-                        <Stethoscope className="h-8 w-8 text-blue-600 mx-auto mb-4" />
-                        <h3 className="text-lg font-semibold mb-2">Medical Guidance</h3>
-                        <p className="text-gray-600 text-sm">Get information about retinal diseases and symptoms</p>
-                      </div>
-                      <div className="card-tech p-6">
-                        <Brain className="h-8 w-8 text-purple-600 mx-auto mb-4" />
-                        <h3 className="text-lg font-semibold mb-2">AI System Help</h3>
-                        <p className="text-gray-600 text-sm">Learn how our diagnostic AI works</p>
-                      </div>
-                      <div className="card-neural p-6">
-                        <Shield className="h-8 w-8 text-cyan-600 mx-auto mb-4" />
-                        <h3 className="text-lg font-semibold mb-2">Prevention Tips</h3>
-                        <p className="text-gray-600 text-sm">Discover ways to protect your eye health</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </section>
+          <div className="space-y-8">
+            <div className="text-center">
+              <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
+                AI Medical Assistant
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+                Get instant medical guidance and support from our intelligent AI chatbot
+              </p>
+            </div>
+            
+            <div className="h-[700px]">
+              <ChatBot isFullPage={true} />
+            </div>
           </div>
         )}
 
@@ -1039,11 +997,6 @@ const LandingPage = () => {
         </footer>
       </div>
 
-      {/* ChatBot Component */}
-      <ChatBot 
-        isOpen={isChatBotOpen} 
-        onToggle={() => setIsChatBotOpen(!isChatBotOpen)} 
-      />
     </div>
   );
 };
