@@ -430,10 +430,10 @@ const LandingPage = () => {
             {/* Core Features */}
             <section>
               <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
                   Advanced AI Technology
                 </h2>
-                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                <p className="text-xl text-slate-300 max-w-3xl mx-auto">
                   Dual AI architecture combining CNNs and Vision Transformers for unprecedented accuracy
                 </p>
               </div>
@@ -459,10 +459,10 @@ const LandingPage = () => {
             {/* System Architecture */}
             <section>
               <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
                   System Architecture
                 </h2>
-                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                <p className="text-xl text-slate-300 max-w-3xl mx-auto">
                   Comprehensive overview of our medical AI platform
                 </p>
               </div>
@@ -484,8 +484,8 @@ const LandingPage = () => {
                           <div key={idx} className="flex items-start space-x-3 p-3 rounded-lg bg-white/50">
                             <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
                             <div>
-                              <div className="font-semibold text-gray-900 text-sm">{module.name}</div>
-                              <div className="text-xs text-gray-600">{module.description}</div>
+                               <div className="font-semibold text-white text-sm">{module.name}</div>
+                               <div className="text-xs text-slate-300">{module.description}</div>
                             </div>
                           </div>
                         ))}
@@ -503,10 +503,10 @@ const LandingPage = () => {
           <div className="space-y-20">
             <section>
               <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
                   About Reti-Doc
                 </h2>
-                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                <p className="text-xl text-slate-300 max-w-3xl mx-auto">
                   Pioneering the future of retinal healthcare through artificial intelligence
                 </p>
               </div>
@@ -514,8 +514,8 @@ const LandingPage = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div className="space-y-8">
                   <div>
-                    <h3 className="text-3xl font-bold text-gray-900 mb-4">Our Mission</h3>
-                    <p className="text-gray-600 text-lg leading-relaxed">
+                    <h3 className="text-3xl font-bold text-white mb-4">Our Mission</h3>
+                    <p className="text-slate-300 text-lg leading-relaxed">
                       Reti-Doc revolutionizes retinal disease diagnosis by combining advanced artificial intelligence 
                       with medical expertise. Our dual AI architecture delivers unparalleled accuracy in detecting 
                       diabetic retinopathy, macular degeneration, glaucoma, and other critical eye conditions.
@@ -523,8 +523,8 @@ const LandingPage = () => {
                   </div>
                   
                   <div>
-                    <h3 className="text-3xl font-bold text-gray-900 mb-4">Our Vision</h3>
-                    <p className="text-gray-600 text-lg leading-relaxed">
+                    <h3 className="text-3xl font-bold text-white mb-4">Our Vision</h3>
+                    <p className="text-slate-300 text-lg leading-relaxed">
                       Making early detection accessible to healthcare providers worldwide, ultimately preventing vision 
                       loss and improving patient outcomes through real-time AI-powered diagnosis.
                     </p>
@@ -533,37 +533,37 @@ const LandingPage = () => {
                   <div className="grid grid-cols-2 gap-6">
                     <div className="card-medical p-6 text-center">
                       <div className="text-3xl font-bold text-blue-600 mb-2">2024</div>
-                      <div className="text-sm text-gray-600">Founded</div>
+                      <div className="text-sm text-slate-300">Founded</div>
                     </div>
                     <div className="card-neural p-6 text-center">
                       <div className="text-3xl font-bold text-cyan-600 mb-2">96.1%</div>
-                      <div className="text-sm text-gray-600">AI Accuracy</div>
+                      <div className="text-sm text-slate-300">AI Accuracy</div>
                     </div>
                   </div>
                 </div>
                 
                 <div className="card-tech p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Technology Stack</h3>
+                  <h3 className="text-2xl font-bold text-white mb-6">Technology Stack</h3>
                   <div className="space-y-4">
                     <div className="flex items-center space-x-3">
                       <Brain className="h-6 w-6 text-blue-600" />
-                      <span className="text-gray-700 font-medium">ResNet18 + DeiT Small Ensemble</span>
+                      <span className="text-slate-300 font-medium">ResNet18 + DeiT Small Ensemble</span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <Code className="h-6 w-6 text-purple-600" />
-                      <span className="text-gray-700 font-medium">React.js Frontend Architecture</span>
+                      <span className="text-slate-300 font-medium">React.js Frontend Architecture</span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <Server className="h-6 w-6 text-green-600" />
-                      <span className="text-gray-700 font-medium">Flask Backend Infrastructure</span>
+                      <span className="text-slate-300 font-medium">Flask Backend Infrastructure</span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <Database className="h-6 w-6 text-orange-600" />
-                      <span className="text-gray-700 font-medium">PyTorch Deep Learning Framework</span>
+                      <span className="text-slate-300 font-medium">PyTorch Deep Learning Framework</span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <Cloud className="h-6 w-6 text-cyan-600" />
-                      <span className="text-gray-700 font-medium">Cloud-Native Deployment</span>
+                      <span className="text-slate-300 font-medium">Cloud-Native Deployment</span>
                     </div>
                   </div>
                 </div>
@@ -573,8 +573,8 @@ const LandingPage = () => {
             {/* Team Section */}
             <section>
               <div className="text-center mb-16">
-                <h2 className="text-4xl font-bold text-gray-900 mb-6">Our Expert Team</h2>
-                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                <h2 className="text-4xl font-bold text-white mb-6">Our Expert Team</h2>
+                <p className="text-xl text-slate-300 max-w-3xl mx-auto">
                   World-class ophthalmologists and AI researchers working together
                 </p>
               </div>
@@ -590,7 +590,7 @@ const LandingPage = () => {
                       <p className="text-blue-600 font-medium">{member.role}</p>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-gray-600 text-sm">{member.bio}</p>
+                      <p className="text-slate-300 text-sm">{member.bio}</p>
                     </CardContent>
                   </Card>
                 ))}
@@ -604,10 +604,10 @@ const LandingPage = () => {
           <div className="space-y-20">
             <section>
               <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
                   Powerful Features
                 </h2>
-                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                <p className="text-xl text-slate-300 max-w-3xl mx-auto">
                   Comprehensive tools for retinal disease detection and management
                 </p>
               </div>
@@ -639,24 +639,24 @@ const LandingPage = () => {
             {/* Additional Features */}
             <section>
               <div className="text-center mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Additional Capabilities</h2>
+                <h2 className="text-3xl font-bold text-white mb-6">Additional Capabilities</h2>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="card-medical p-6">
                   <Smartphone className="h-8 w-8 text-blue-600 mb-4" />
                   <h3 className="text-lg font-semibold mb-2">Mobile Compatible</h3>
-                  <p className="text-gray-600 text-sm">Access from any device with responsive design</p>
+                  <p className="text-slate-300 text-sm">Access from any device with responsive design</p>
                 </div>
                 <div className="card-tech p-6">
                   <Wifi className="h-8 w-8 text-purple-600 mb-4" />
                   <h3 className="text-lg font-semibold mb-2">Real-time Updates</h3>
-                  <p className="text-gray-600 text-sm">Live streaming and instant analysis results</p>
+                  <p className="text-slate-300 text-sm">Live streaming and instant analysis results</p>
                 </div>
                 <div className="card-neural p-6">
                   <MessageSquare className="h-8 w-8 text-cyan-600 mb-4" />
                   <h3 className="text-lg font-semibold mb-2">AI Chatbot</h3>
-                  <p className="text-gray-600 text-sm">24/7 medical guidance and consultation</p>
+                  <p className="text-slate-300 text-sm">24/7 medical guidance and consultation</p>
                 </div>
               </div>
             </section>
@@ -668,10 +668,10 @@ const LandingPage = () => {
           <div className="space-y-20">
             <section>
               <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
                   Retinal Disease Education
                 </h2>
-                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                <p className="text-xl text-slate-300 max-w-3xl mx-auto">
                   Understanding common retinal conditions and their implications
                 </p>
               </div>
@@ -693,9 +693,9 @@ const LandingPage = () => {
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-gray-700 mb-4 leading-relaxed">{disease.description}</p>
+                      <p className="text-slate-800 mb-4 leading-relaxed">{disease.description}</p>
                       <div className="flex items-center justify-between">
-                        <div className="text-sm text-gray-600">
+                        <div className="text-sm text-slate-300">
                           <strong>Prevalence:</strong> {disease.prevalence}
                         </div>
                         <Button size="sm" className="btn-medical">
@@ -711,24 +711,24 @@ const LandingPage = () => {
             {/* Prevention Tips */}
             <section>
               <div className="text-center mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Prevention & Care</h2>
+                <h2 className="text-3xl font-bold text-white mb-6">Prevention & Care</h2>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="card-medical p-6">
                   <Eye className="h-8 w-8 text-blue-600 mb-4" />
                   <h3 className="text-lg font-semibold mb-2">Regular Eye Exams</h3>
-                  <p className="text-gray-600 text-sm">Annual comprehensive eye exams for early detection</p>
+                  <p className="text-slate-300 text-sm">Annual comprehensive eye exams for early detection</p>
                 </div>
                 <div className="card-tech p-6">
                   <Heart className="h-8 w-8 text-purple-600 mb-4" />
                   <h3 className="text-lg font-semibold mb-2">Manage Diabetes</h3>
-                  <p className="text-gray-600 text-sm">Blood sugar control reduces retinopathy risk</p>
+                  <p className="text-slate-300 text-sm">Blood sugar control reduces retinopathy risk</p>
                 </div>
                 <div className="card-neural p-6">
                   <Shield className="h-8 w-8 text-cyan-600 mb-4" />
                   <h3 className="text-lg font-semibold mb-2">UV Protection</h3>
-                  <p className="text-gray-600 text-sm">Sunglasses protect against harmful UV rays</p>
+                  <p className="text-slate-300 text-sm">Sunglasses protect against harmful UV rays</p>
                 </div>
               </div>
             </section>
@@ -740,10 +740,10 @@ const LandingPage = () => {
           <div className="space-y-20">
             <section>
               <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
                   Live Retinal Scan
                 </h2>
-                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                <p className="text-xl text-slate-300 max-w-3xl mx-auto">
                   Real-time camera-based retinal analysis for instant results
                 </p>
               </div>
@@ -840,10 +840,10 @@ const LandingPage = () => {
           <div className="space-y-20">
             <section>
               <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
                   Get in Touch
                 </h2>
-                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                <p className="text-xl text-slate-300 max-w-3xl mx-auto">
                   Ready to revolutionize your retinal care? Contact our team today
                 </p>
               </div>
@@ -851,26 +851,26 @@ const LandingPage = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 <div className="space-y-8">
                   <div className="card-medical p-8">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
+                    <h3 className="text-2xl font-bold text-white mb-6">Contact Information</h3>
                     <div className="space-y-4">
                       <div className="flex items-center space-x-3">
                         <Phone className="h-6 w-6 text-blue-600" />
-                        <span className="text-gray-700">+1 (555) 123-4567</span>
+                        <span className="text-slate-300">+1 (555) 123-4567</span>
                       </div>
                       <div className="flex items-center space-x-3">
                         <Mail className="h-6 w-6 text-blue-600" />
-                        <span className="text-gray-700">contact@reti-doc.com</span>
+                        <span className="text-slate-300">contact@reti-doc.com</span>
                       </div>
                       <div className="flex items-center space-x-3">
                         <MapPin className="h-6 w-6 text-blue-600" />
-                        <span className="text-gray-700">123 Medical Center Dr, Healthcare City, HC 12345</span>
+                        <span className="text-slate-300">123 Medical Center Dr, Healthcare City, HC 12345</span>
                       </div>
                     </div>
                   </div>
                   
                   <div className="card-tech p-8">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-6">Business Hours</h3>
-                    <div className="space-y-2 text-gray-700">
+                    <h3 className="text-2xl font-bold text-white mb-6">Business Hours</h3>
+                    <div className="space-y-2 text-slate-300">
                       <div className="flex justify-between">
                         <span>Monday - Friday:</span>
                         <span>9:00 AM - 6:00 PM</span>
@@ -888,10 +888,10 @@ const LandingPage = () => {
                 </div>
                 
                 <div className="card-neural p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h3>
+                  <h3 className="text-2xl font-bold text-white mb-6">Send us a Message</h3>
                   <form className="space-y-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                      <label className="block text-sm font-medium text-white mb-2">Name</label>
                       <input 
                         type="text" 
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -899,7 +899,7 @@ const LandingPage = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                      <label className="block text-sm font-medium text-white mb-2">Email</label>
                       <input 
                         type="email" 
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -907,7 +907,7 @@ const LandingPage = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                      <label className="block text-sm font-medium text-white mb-2">Message</label>
                       <textarea 
                         rows={4}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
