@@ -39,7 +39,8 @@ const LandingPage = () => {
       title: 'Dual AI Architecture',
       description: 'ResNet18 + DeiT Small ensemble model for superior accuracy in retinal disease detection.',
       theme: 'medical',
-      metrics: '96.1% accuracy'
+      metrics: '96
+        % accuracy'
     },
     {
       icon: Zap,
