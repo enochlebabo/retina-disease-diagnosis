@@ -25,13 +25,11 @@ const LandingPage = () => {
   const { theme, setTheme } = useTheme();
 
   const navigation = [
-    { name: 'Overview', id: 'overview', icon: Eye },
-    { name: 'About', id: 'about', icon: Users },
+    { name: 'Home', id: 'overview', icon: Eye },
     { name: 'Features', id: 'features', icon: Zap },
-    { name: 'Education', id: 'education', icon: BookOpen },
-    { name: 'Live Scan', id: 'scan', icon: Scan },
-    { name: 'AI Training', id: 'training', icon: Brain },
-    { name: 'Chat Support', id: 'chat', icon: MessageSquare },
+    { name: 'Scan', id: 'scan', icon: Scan },
+    { name: 'AI Model', id: 'training', icon: Brain },
+    { name: 'Chat', id: 'chat', icon: MessageSquare },
     { name: 'Contact', id: 'contact', icon: Phone },
   ];
 
@@ -237,60 +235,53 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10 dark:opacity-5"
-        style={{
-          backgroundImage: `url('/lovable-uploads/33c00090-f808-422f-9713-d27ae9eb25cd.png')`
-        }}
-      />
-      
-      {/* Background Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/90 to-background/95" />
+    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-slate-900 to-cyan-900 dark:from-slate-950 dark:via-blue-950 dark:to-slate-900 text-white relative overflow-hidden">
+      {/* Tech Background Pattern */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-transparent to-cyan-600/20" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_50%)]" />
       
       {/* Content */}
       <div className="relative z-10">
         {/* Modern Navigation */}
-        <nav className="bg-card/80 backdrop-blur-lg shadow-xl border-b border-border sticky top-0 z-50">
+        <nav className="bg-slate-900/80 backdrop-blur-lg shadow-xl border-b border-slate-700/50 sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-20">
+            <div className="flex justify-between items-center h-16">
               {/* Logo */}
-              <div className="flex items-center space-x-4">
-                <div className="bg-gradient-to-r from-primary to-primary-foreground p-3 rounded-2xl shadow-lg">
-                  <Eye className="h-8 w-8 text-white" />
+              <div className="flex items-center space-x-3">
+                <div className="bg-gradient-to-r from-blue-500 to-cyan-500 p-2 rounded-xl shadow-lg">
+                  <Eye className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-2xl font-bold text-foreground">Reti-Doc</h1>
-                  <p className="text-sm text-primary font-medium">AI-Powered Retinal Intelligence</p>
+                  <h1 className="text-xl font-bold text-white">Reti-Doc</h1>
+                  <p className="text-xs text-cyan-300 font-medium">AI-Powered Vision</p>
                 </div>
               </div>
               
               {/* Desktop Navigation */}
-              <div className="hidden lg:flex items-center space-x-8">
+              <div className="hidden md:flex items-center space-x-2">
                 {navigation.map((item) => (
                   <button
                     key={item.id}
                     onClick={() => setActiveTab(item.id)}
-                    className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                    className={`flex items-center space-x-1 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                       activeTab === item.id
-                        ? 'bg-primary text-primary-foreground shadow-lg'
-                        : 'text-foreground hover:bg-accent hover:text-accent-foreground'
+                        ? 'bg-blue-600 text-white shadow-lg'
+                        : 'text-slate-300 hover:bg-slate-800 hover:text-white'
                     }`}
                   >
                     <item.icon className="h-4 w-4" />
-                    <span>{item.name}</span>
+                    <span className="hidden lg:inline">{item.name}</span>
                   </button>
                 ))}
               </div>
               
               {/* Theme Toggle & Auth Buttons */}
-              <div className="hidden lg:flex items-center space-x-4">
+              <div className="hidden md:flex items-center space-x-2">
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                  className="p-2"
+                  className="p-2 border-slate-600 text-slate-300 hover:bg-slate-700"
                 >
                   {theme === 'dark' ? (
                     <Sun className="h-4 w-4" />
@@ -299,21 +290,21 @@ const LandingPage = () => {
                   )}
                 </Button>
                 <Link to="/login">
-                  <Button variant="outline" className="btn-outline-medical">
+                  <Button variant="outline" size="sm" className="border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white">
                     Sign In
                   </Button>
                 </Link>
                 <Link to="/register">
-                  <Button className="btn-medical">
-                    Get Started
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                  <Button size="sm" className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white">
+                    Start
+                    <ArrowRight className="ml-1 h-3 w-3" />
                   </Button>
                 </Link>
               </div>
 
               {/* Mobile Menu Button */}
               <button
-                className="lg:hidden p-2 rounded-lg hover:bg-accent"
+                className="md:hidden p-2 rounded-lg hover:bg-slate-800 text-white"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
                 {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -323,7 +314,7 @@ const LandingPage = () => {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-border bg-card/95 backdrop-blur-lg">
+          <div className="md:hidden border-t border-slate-700/50 bg-slate-900/95 backdrop-blur-lg">
             <div className="px-4 py-4 space-y-2">
               {navigation.map((item) => (
                 <button
@@ -334,20 +325,20 @@ const LandingPage = () => {
                   }}
                   className={`flex items-center space-x-3 w-full px-4 py-3 rounded-lg transition-all ${
                     activeTab === item.id
-                      ? 'bg-primary text-primary-foreground'
-                      : 'text-foreground hover:bg-accent hover:text-accent-foreground'
+                      ? 'bg-blue-600 text-white'
+                      : 'text-slate-300 hover:bg-slate-800 hover:text-white'
                   }`}
                 >
                   <item.icon className="h-5 w-5" />
                   <span>{item.name}</span>
                 </button>
               ))}
-              <div className="pt-4 border-t border-border space-y-2">
+              <div className="pt-4 border-t border-slate-700/50 space-y-2">
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                  className="w-full mb-2"
+                  className="w-full mb-2 border-slate-600 text-slate-300 hover:bg-slate-700"
                 >
                   {theme === 'dark' ? (
                     <>
@@ -362,10 +353,10 @@ const LandingPage = () => {
                   )}
                 </Button>
                 <Link to="/login" className="block">
-                  <Button variant="outline" className="w-full">Sign In</Button>
+                  <Button variant="outline" className="w-full border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white">Sign In</Button>
                 </Link>
                 <Link to="/register" className="block">
-                  <Button className="w-full btn-medical">Get Started</Button>
+                  <Button className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white">Get Started</Button>
                 </Link>
               </div>
             </div>
@@ -382,22 +373,22 @@ const LandingPage = () => {
                 AI-Powered Medical Diagnosis
               </Badge>
               
-              <h1 className="text-5xl lg:text-7xl font-bold text-foreground mb-8 leading-tight">
+              <h1 className="text-5xl lg:text-7xl font-bold text-white mb-8 leading-tight">
                 Revolutionizing <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300">
                   Retinal Healthcare
                 </span>
               </h1>
               
-              <p className="text-xl lg:text-2xl text-muted-foreground mb-12 max-w-4xl mx-auto leading-relaxed">
+              <p className="text-xl lg:text-2xl text-slate-300 mb-12 max-w-4xl mx-auto leading-relaxed">
                 Advanced AI-powered retinal disease detection using cutting-edge deep learning. 
-                Real-time camera scanning with <span className="text-primary font-semibold">96.1% accuracy</span> 
+                Real-time camera scanning with <span className="text-cyan-400 font-semibold">96.1% accuracy</span> 
                 validated on medical datasets.
               </p>
               
               <div className="flex flex-col sm:flex-row justify-center gap-6 mb-16">
                 <Link to="/register">
-                  <Button size="lg" className="btn-medical text-lg px-8 py-4 h-auto">
+                  <Button size="lg" className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white text-lg px-8 py-4 h-auto shadow-lg">
                     Start Free Analysis
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
@@ -405,7 +396,7 @@ const LandingPage = () => {
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="btn-outline-medical text-lg px-8 py-4 h-auto"
+                  className="border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-slate-900 text-lg px-8 py-4 h-auto"
                   onClick={() => setActiveTab('scan')}
                 >
                   Try Live Scan
@@ -418,12 +409,12 @@ const LandingPage = () => {
                 {stats.map((stat, index) => (
                   <div key={index} className="text-center">
                     <div className="flex justify-center mb-2">
-                      <div className="gradient-medical p-3 rounded-full">
+                      <div className="bg-gradient-to-r from-blue-500 to-cyan-500 p-3 rounded-full">
                         <stat.icon className="h-6 w-6 text-white" />
                       </div>
                     </div>
-                    <div className="text-3xl lg:text-4xl font-bold text-foreground">{stat.value}</div>
-                    <div className="text-sm text-muted-foreground font-medium">{stat.label}</div>
+                    <div className="text-3xl lg:text-4xl font-bold text-white">{stat.value}</div>
+                    <div className="text-sm text-slate-300 font-medium">{stat.label}</div>
                   </div>
                 ))}
               </div>
