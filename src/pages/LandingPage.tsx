@@ -367,22 +367,22 @@ const LandingPage = () => {
         {/* Hero Section */}
         <section className="pt-20 pb-32 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <Badge className="mb-6 px-4 py-2 text-sm font-medium bg-primary/10 text-primary border-primary/20">
+            <div className="text-center mb-16 animate-fade-in">
+              <Badge className="mb-6 px-4 py-2 text-sm font-medium bg-primary/10 text-primary border-primary/20 animate-scale-in">
                 <Activity className="h-4 w-4 mr-2" />
                 AI-Powered Medical Diagnosis
               </Badge>
               
-              <h1 className="text-5xl lg:text-7xl font-bold text-white mb-8 leading-tight">
+              <h1 className="text-5xl lg:text-7xl font-bold text-foreground dark:text-white mb-8 leading-tight animate-fade-in">
                 Revolutionizing <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary">
                   Retinal Healthcare
                 </span>
               </h1>
               
-              <p className="text-xl lg:text-2xl text-slate-300 mb-12 max-w-4xl mx-auto leading-relaxed">
+              <p className="text-xl lg:text-2xl text-muted-foreground dark:text-slate-300 mb-12 max-w-4xl mx-auto leading-relaxed animate-fade-in">
                 Advanced AI-powered retinal disease detection using cutting-edge deep learning. 
-                Real-time camera scanning with <span className="text-cyan-400 font-semibold">96.1% accuracy</span> 
+                Real-time camera scanning with <span className="text-primary font-semibold">96.1% accuracy</span> 
                 validated on medical datasets.
               </p>
               
@@ -405,16 +405,16 @@ const LandingPage = () => {
               </div>
               
               {/* Statistics */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto animate-fade-in">
                 {stats.map((stat, index) => (
-                  <div key={index} className="text-center">
+                  <div key={index} className="text-center animate-scale-in hover-scale">
                     <div className="flex justify-center mb-2">
-                      <div className="bg-gradient-to-r from-blue-500 to-cyan-500 p-3 rounded-full">
+                      <div className="bg-gradient-to-r from-primary to-accent p-3 rounded-full">
                         <stat.icon className="h-6 w-6 text-white" />
                       </div>
                     </div>
-                    <div className="text-3xl lg:text-4xl font-bold text-white">{stat.value}</div>
-                    <div className="text-sm text-slate-300 font-medium">{stat.label}</div>
+                    <div className="text-3xl lg:text-4xl font-bold text-foreground dark:text-white">{stat.value}</div>
+                    <div className="text-sm text-muted-foreground dark:text-slate-300 font-medium">{stat.label}</div>
                   </div>
                 ))}
               </div>
