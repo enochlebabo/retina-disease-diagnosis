@@ -829,7 +829,7 @@ const LandingPage = () => {
               </p>
             </div>
             
-            <div className="h-[700px]">
+            <div className="h-[600px] mb-20">
               <ChatBot isFullPage={true} />
             </div>
           </div>
