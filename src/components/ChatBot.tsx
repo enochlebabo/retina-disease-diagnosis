@@ -295,92 +295,94 @@ const ChatBot: React.FC<ChatBotProps> = ({ isFullPage = false }) => {
             </div>
           )}
 
-          <ScrollArea className="flex-1 p-4">
-            <div className="space-y-6">
-              {messages.map((message) => (
-                <div
-                  key={message.id}
-                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`}
-                >
-                  <div className={`flex items-start space-x-3 max-w-[85%] ${
-                    message.sender === 'user' ? 'flex-row-reverse space-x-reverse' : ''
-                  }`}>
-                    <div className={`p-2 rounded-full flex-shrink-0 ${
-                      message.sender === 'bot' 
-                        ? 'bg-gradient-to-r from-primary to-primary/80 text-primary-foreground' 
-                        : 'bg-accent text-accent-foreground'
+          <div className="flex-1 overflow-hidden">
+            <ScrollArea className="h-full p-4">
+              <div className="space-y-6 min-h-full">
+                {messages.map((message) => (
+                  <div
+                    key={message.id}
+                    className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`}
+                  >
+                    <div className={`flex items-start space-x-3 max-w-[85%] ${
+                      message.sender === 'user' ? 'flex-row-reverse space-x-reverse' : ''
                     }`}>
-                      {message.sender === 'bot' ? (
-                        <Bot className="h-5 w-5" />
-                      ) : (
-                        <User className="h-5 w-5" />
-                      )}
-                    </div>
-                    <div className={`rounded-xl p-4 shadow-sm ${
-                      message.sender === 'bot'
-                        ? 'bg-muted text-muted-foreground border border-border'
-                        : 'bg-primary text-primary-foreground'
-                    }`}>
-                      {message.category && message.sender === 'bot' && message.category !== 'welcome' && (
-                        <div className="flex items-center space-x-2 mb-2">
-                          <Badge variant="secondary" className="text-xs">
-                            {categories.find(c => c.id === message.category)?.label || message.category}
-                          </Badge>
-                        </div>
-                      )}
-                      <div className="text-sm leading-relaxed whitespace-pre-wrap">{message.text}</div>
-                      <div className="flex items-center justify-between mt-3">
-                        <p className="text-xs opacity-70">
-                          {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                        </p>
-                        {message.sender === 'bot' && (
-                          <div className="flex items-center space-x-1">
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              className={`h-6 w-6 p-0 ${message.helpful === true ? 'text-green-500' : 'text-muted-foreground hover:text-green-500'}`}
-                              onClick={() => markMessageHelpful(message.id, true)}
-                            >
-                              <ThumbsUp className="h-3 w-3" />
-                            </Button>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              className={`h-6 w-6 p-0 ${message.helpful === false ? 'text-red-500' : 'text-muted-foreground hover:text-red-500'}`}
-                              onClick={() => markMessageHelpful(message.id, false)}
-                            >
-                              <ThumbsDown className="h-3 w-3" />
-                            </Button>
-                          </div>
+                      <div className={`p-2 rounded-full flex-shrink-0 ${
+                        message.sender === 'bot' 
+                          ? 'bg-gradient-to-r from-primary to-primary/80 text-primary-foreground' 
+                          : 'bg-accent text-accent-foreground'
+                      }`}>
+                        {message.sender === 'bot' ? (
+                          <Bot className="h-5 w-5" />
+                        ) : (
+                          <User className="h-5 w-5" />
                         )}
                       </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-              
-              {isTyping && (
-                <div className="flex justify-start animate-fade-in">
-                  <div className="flex items-center space-x-3">
-                    <div className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground p-2 rounded-full">
-                      <Bot className="h-5 w-5" />
-                    </div>
-                    <div className="bg-muted text-muted-foreground rounded-xl p-4 border border-border">
-                      <div className="flex items-center space-x-2">
-                        <div className="flex space-x-1">
-                          <div className="w-2 h-2 bg-current rounded-full animate-pulse"></div>
-                          <div className="w-2 h-2 bg-current rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                          <div className="w-2 h-2 bg-current rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+                      <div className={`rounded-xl p-4 shadow-sm ${
+                        message.sender === 'bot'
+                          ? 'bg-muted text-muted-foreground border border-border'
+                          : 'bg-primary text-primary-foreground'
+                      }`}>
+                        {message.category && message.sender === 'bot' && message.category !== 'welcome' && (
+                          <div className="flex items-center space-x-2 mb-2">
+                            <Badge variant="secondary" className="text-xs">
+                              {categories.find(c => c.id === message.category)?.label || message.category}
+                            </Badge>
+                          </div>
+                        )}
+                        <div className="text-sm leading-relaxed whitespace-pre-wrap">{message.text}</div>
+                        <div className="flex items-center justify-between mt-3">
+                          <p className="text-xs opacity-70">
+                            {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                          </p>
+                          {message.sender === 'bot' && (
+                            <div className="flex items-center space-x-1">
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className={`h-6 w-6 p-0 ${message.helpful === true ? 'text-green-500' : 'text-muted-foreground hover:text-green-500'}`}
+                                onClick={() => markMessageHelpful(message.id, true)}
+                              >
+                                <ThumbsUp className="h-3 w-3" />
+                              </Button>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className={`h-6 w-6 p-0 ${message.helpful === false ? 'text-red-500' : 'text-muted-foreground hover:text-red-500'}`}
+                                onClick={() => markMessageHelpful(message.id, false)}
+                              >
+                                <ThumbsDown className="h-3 w-3" />
+                              </Button>
+                            </div>
+                          )}
                         </div>
-                        <span className="text-xs text-muted-foreground">AI is thinking...</span>
                       </div>
                     </div>
                   </div>
-                </div>
-              )}
-              <div ref={messagesEndRef} />
-            </div>
-          </ScrollArea>
+                ))}
+                
+                {isTyping && (
+                  <div className="flex justify-start animate-fade-in">
+                    <div className="flex items-center space-x-3">
+                      <div className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground p-2 rounded-full">
+                        <Bot className="h-5 w-5" />
+                      </div>
+                      <div className="bg-muted text-muted-foreground rounded-xl p-4 border border-border">
+                        <div className="flex items-center space-x-2">
+                          <div className="flex space-x-1">
+                            <div className="w-2 h-2 bg-current rounded-full animate-pulse"></div>
+                            <div className="w-2 h-2 bg-current rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                            <div className="w-2 h-2 bg-current rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+                          </div>
+                          <span className="text-xs text-muted-foreground">AI is thinking...</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                <div ref={messagesEndRef} />
+              </div>
+            </ScrollArea>
+          </div>
 
           <div className="p-4 border-t border-border bg-background">
             {selectedCategory && (
