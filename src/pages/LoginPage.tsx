@@ -11,7 +11,7 @@ const LoginPage = () => {
   const { login, user, isLoading } = useAuth();
 
   if (user && !isLoading) {
-    const redirectPath = user.role === 'admin' ? '/admin/dashboard' : '/';
+    const redirectPath = user.role === 'admin' ? '/admin/dashboard' : '/dashboard';
     return <Navigate to={redirectPath} replace />;
   }
 
