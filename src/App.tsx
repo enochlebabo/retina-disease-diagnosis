@@ -15,6 +15,7 @@ import Dashboard from "./pages/admin/Dashboard";
 import AdminPatients from "./pages/admin/Patients";
 import AdminResults from "./pages/admin/Results";
 import AdminSettings from "./pages/admin/Settings";
+import ModelTraining from "./pages/admin/ModelTraining";
 import UserDashboard from "./pages/user/UserDashboard";
 import Analysis from "./pages/user/Analysis";
 import Education from "./pages/user/Education";
@@ -45,6 +46,7 @@ const App = () => (
                       <Route path="dashboard" element={<Dashboard />} />
                       <Route path="patients" element={<AdminPatients />} />
                       <Route path="results" element={<AdminResults />} />
+                      <Route path="model-training" element={<ModelTraining />} />
                       <Route path="settings" element={<AdminSettings />} />
                       <Route path="*" element={<Dashboard />} />
                     </Routes>

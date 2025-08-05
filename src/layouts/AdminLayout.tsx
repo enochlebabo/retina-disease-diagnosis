@@ -2,7 +2,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { BarChart3, Users, Eye, Settings, LogOut, Shield } from 'lucide-react';
+import { BarChart3, Users, Eye, Settings, LogOut, Shield, Brain } from 'lucide-react';
 
 interface AdminLayoutProps {
   children: React.ReactNode;
@@ -15,6 +15,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
     { path: '/admin/dashboard', icon: BarChart3, label: 'Dashboard' },
     { path: '/admin/patients', icon: Users, label: 'Patients' },
     { path: '/admin/results', icon: Eye, label: 'Results' },
+    { path: '/admin/model-training', icon: Brain, label: 'Model Training' },
     { path: '/admin/settings', icon: Settings, label: 'Settings' }
   ];
 
