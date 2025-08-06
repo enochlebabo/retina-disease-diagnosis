@@ -63,58 +63,58 @@ const LandingPage = () => {
     }
   ];
 
-  const educationalContent = [
+  const primaryConditions = [
     {
-      title: 'Diabetic Retinopathy',
-      description: 'Leading cause of blindness in diabetic patients affecting blood vessels in the retina.',
+      title: 'Choroidal Neovascularization (CNV)',
+      description: 'Abnormal blood vessel growth beneath the retina, commonly associated with wet AMD.',
       severity: 'Critical',
-      prevalence: '34.6% of diabetic patients',
+      prevalence: '10-15% of AMD patients',
       icon: AlertTriangle,
       color: 'text-red-500',
       bgColor: 'bg-red-50 dark:bg-red-950/20',
       borderColor: 'border-red-200 dark:border-red-800',
-      symptoms: ['Blurred vision', 'Dark spots', 'Vision loss', 'Difficulty seeing at night'],
-      prevention: ['Regular eye exams', 'Blood sugar control', 'Blood pressure management', 'Healthy lifestyle'],
-      stages: ['Mild nonproliferative', 'Moderate nonproliferative', 'Severe nonproliferative', 'Proliferative']
+      symptoms: ['Sudden vision loss', 'Distorted vision', 'Central scotoma', 'Metamorphopsia'],
+      prevention: ['Regular monitoring', 'Anti-VEGF therapy', 'Early detection', 'Amsler grid testing'],
+      stages: ['Subfoveal CNV', 'Juxtafoveal CNV', 'Extrafoveal CNV', 'Occult CNV']
     },
     {
-      title: 'Age-Related Macular Degeneration',
-      description: 'Progressive eye condition affecting central vision, most common in adults over 50.',
+      title: 'Diabetic Macular Edema (DME)',
+      description: 'Fluid accumulation in the macula due to diabetes, causing central vision impairment.',
       severity: 'High',
-      prevalence: '8.7% of adults over 45',
+      prevalence: '7% of diabetic patients',
       icon: Eye,
       color: 'text-orange-500',
       bgColor: 'bg-orange-50 dark:bg-orange-950/20',
       borderColor: 'border-orange-200 dark:border-orange-800',
-      symptoms: ['Central vision loss', 'Straight lines appear wavy', 'Difficulty reading', 'Color perception changes'],
-      prevention: ['UV protection', 'Antioxidant vitamins', 'No smoking', 'Regular exercise'],
-      stages: ['Early AMD', 'Intermediate AMD', 'Late AMD (Dry)', 'Late AMD (Wet)']
+      symptoms: ['Blurred central vision', 'Color changes', 'Reading difficulty', 'Wavy lines'],
+      prevention: ['Blood sugar control', 'Regular eye exams', 'Blood pressure management', 'Lipid control'],
+      stages: ['Mild DME', 'Moderate DME', 'Severe DME', 'Center-involving DME']
     },
     {
-      title: 'Glaucoma',
-      description: 'Group of eye diseases that damage the optic nerve, often called the "silent thief of sight".',
-      severity: 'High',
-      prevalence: '3.54% globally',
+      title: 'Drusen',
+      description: 'Yellow deposits under the retina, early sign of age-related macular degeneration.',
+      severity: 'Moderate',
+      prevalence: '30% of adults over 75',
       icon: Target,
       color: 'text-yellow-500',
       bgColor: 'bg-yellow-50 dark:bg-yellow-950/20',
       borderColor: 'border-yellow-200 dark:border-yellow-800',
-      symptoms: ['Gradual vision loss', 'Tunnel vision', 'Eye pain', 'Halos around lights'],
-      prevention: ['Regular eye pressure checks', 'Exercise regularly', 'Protect eyes from injury', 'Take prescribed eye drops'],
-      stages: ['Suspect glaucoma', 'Early glaucoma', 'Moderate glaucoma', 'Advanced glaucoma']
+      symptoms: ['Usually asymptomatic', 'Gradual vision changes', 'Difficulty in low light', 'Mild central blur'],
+      prevention: ['Regular monitoring', 'Healthy diet', 'UV protection', 'Antioxidant supplements'],
+      stages: ['Small drusen (<63μm)', 'Medium drusen (63-124μm)', 'Large drusen (>125μm)', 'Confluent drusen']
     },
     {
-      title: 'Hypertensive Retinopathy',
-      description: 'Retinal damage caused by high blood pressure affecting the blood vessels in the retina.',
-      severity: 'Moderate',
-      prevalence: '8-15% of hypertensive patients',
+      title: 'Normal (Healthy Retina)',
+      description: 'Healthy retinal tissue with normal blood vessels, macula, and optic nerve appearance.',
+      severity: 'None',
+      prevalence: 'Baseline standard',
       icon: Heart,
-      color: 'text-blue-500',
-      bgColor: 'bg-blue-50 dark:bg-blue-950/20',
-      borderColor: 'border-blue-200 dark:border-blue-800',
-      symptoms: ['Blurred vision', 'Headaches', 'Double vision', 'Vision loss'],
-      prevention: ['Blood pressure control', 'Regular monitoring', 'Healthy diet', 'Stress management'],
-      stages: ['Grade 1 (Mild)', 'Grade 2 (Moderate)', 'Grade 3 (Severe)', 'Grade 4 (Malignant)']
+      color: 'text-green-500',
+      bgColor: 'bg-green-50 dark:bg-green-950/20',
+      borderColor: 'border-green-200 dark:border-green-800',
+      symptoms: ['Clear vision', 'No distortion', 'Normal color perception', 'Comfortable vision'],
+      prevention: ['Annual eye exams', 'Healthy lifestyle', 'UV protection', 'Screen time management'],
+      stages: ['Optimal health', 'Age-appropriate changes', 'Preventive monitoring', 'Baseline documentation']
     }
   ];
 
@@ -750,29 +750,31 @@ const LandingPage = () => {
               </div>
               
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {educationalContent.map((disease, index) => (
-                  <Card key={index} className={`hover:shadow-xl transition-all duration-300 ${disease.bgColor} border-2 ${disease.borderColor}`}>
+                {primaryConditions.map((condition, index) => (
+                  <Card key={index} className={`hover:shadow-xl transition-all duration-300 ${condition.bgColor} border-2 ${condition.borderColor}`}>
                     <CardHeader>
                       <div className="flex items-center space-x-4">
-                        <div className={`${disease.bgColor} p-3 rounded-2xl border ${disease.borderColor}`}>
-                          <disease.icon className={`h-8 w-8 ${disease.color}`} />
+                        <div className={`${condition.bgColor} p-3 rounded-2xl border ${condition.borderColor}`}>
+                          <condition.icon className={`h-8 w-8 ${condition.color}`} />
                         </div>
                         <div>
-                          <CardTitle className="text-xl font-bold text-foreground">{disease.title}</CardTitle>
-                          <Badge variant="outline" className={`${disease.color} border-current`}>
-                            {disease.severity} Risk
+                          <CardTitle className="text-xl font-bold text-foreground">{condition.title}</CardTitle>
+                          <Badge variant="outline" className={`${condition.color} border-current`}>
+                            {condition.severity} {condition.severity !== 'None' ? 'Risk' : ''}
                           </Badge>
                         </div>
                       </div>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                      <p className="text-muted-foreground leading-relaxed">{disease.description}</p>
+                      <p className="text-muted-foreground leading-relaxed">{condition.description}</p>
                       
                       {/* Symptoms */}
                       <div>
-                        <h4 className="font-semibold text-foreground mb-2">Symptoms:</h4>
+                        <h4 className="font-semibold text-foreground mb-2">
+                          {condition.title.includes('Normal') ? 'Characteristics:' : 'Symptoms:'}
+                        </h4>
                         <ul className="text-sm text-muted-foreground space-y-1">
-                          {disease.symptoms.map((symptom, i) => (
+                          {condition.symptoms.map((symptom, i) => (
                             <li key={i} className="flex items-center">
                               <span className="w-1.5 h-1.5 bg-current rounded-full mr-2"></span>
                               {symptom}
@@ -783,9 +785,11 @@ const LandingPage = () => {
                       
                       {/* Prevention */}
                       <div>
-                        <h4 className="font-semibold text-foreground mb-2">Prevention:</h4>
+                        <h4 className="font-semibold text-foreground mb-2">
+                          {condition.title.includes('Normal') ? 'Maintenance:' : 'Prevention:'}
+                        </h4>
                         <ul className="text-sm text-muted-foreground space-y-1">
-                          {disease.prevention.map((tip, i) => (
+                          {condition.prevention.map((tip, i) => (
                             <li key={i} className="flex items-center">
                               <span className="w-1.5 h-1.5 bg-current rounded-full mr-2"></span>
                               {tip}
@@ -796,7 +800,7 @@ const LandingPage = () => {
                       
                       <div className="flex items-center justify-between pt-2 border-t border-border">
                         <div className="text-sm text-muted-foreground">
-                          <strong>Prevalence:</strong> {disease.prevalence}
+                          <strong>Prevalence:</strong> {condition.prevalence}
                         </div>
                         <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
                           Ask AI Assistant
