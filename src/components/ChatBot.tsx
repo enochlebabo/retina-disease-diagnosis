@@ -88,34 +88,270 @@ const ChatBot: React.FC<ChatBotProps> = ({ isFullPage = false }) => {
     { text: "Diet recommendations for eye health", category: "prevention" }
   ];
 
-  const medicalResponses = {
+  const educationalResponses = {
     'diabetic retinopathy': {
-      text: 'Diabetic retinopathy is a serious complication of diabetes affecting retinal blood vessels. Our AI detects it with 96.1% accuracy. **Key Prevention:** Control blood sugar levels, get annual eye exams, maintain healthy blood pressure. Early detection can prevent 95% of severe vision loss!',
+      text: `🔍 **Diabetic Retinopathy** - Leading cause of blindness in diabetic patients
+
+**Quick Facts:**
+• Affects 34.6% of diabetic patients
+• Prevents 95% of severe vision loss when detected early
+• Our AI achieves 96.1% detection accuracy
+
+**Symptoms to Watch:**
+• Blurred vision
+• Dark spots or floaters
+• Difficulty seeing at night
+• Vision loss
+
+**Prevention Strategies:**
+• Annual comprehensive eye exams
+• Maintain HbA1c < 7%
+• Control blood pressure
+• Regular exercise
+• Healthy diet
+
+**Stages:**
+1. Mild nonproliferative
+2. Moderate nonproliferative  
+3. Severe nonproliferative
+4. Proliferative (advanced)
+
+Would you like to know more about any specific aspect?`,
       category: 'diseases'
     },
     'macular degeneration': {
-      text: 'Age-related macular degeneration (AMD) affects central vision and is the leading cause of vision loss in people over 50. There are two types: dry (90%) and wet (10%). **Prevention:** Eat leafy greens, protect from UV light, don\'t smoke, and get regular checkups.',
+      text: `👁️ **Age-Related Macular Degeneration (AMD)** - Progressive condition affecting central vision
+
+**Key Statistics:**
+• Affects 8.7% of adults over 45
+• Leading cause of vision loss in people over 50
+• Two types: Dry (90%) and Wet (10%)
+
+**Symptoms:**
+• Central vision loss or blurriness
+• Straight lines appear wavy
+• Difficulty reading
+• Color perception changes
+
+**Risk Factors:**
+• Age over 50
+• Family history
+• Smoking
+• Cardiovascular disease
+
+**Prevention:**
+• UV-protective sunglasses
+• Antioxidant vitamins (AREDS formula)
+• Healthy diet with leafy greens
+• Regular exercise
+• No smoking
+
+**Early Detection:** Regular Amsler grid testing can help detect changes in central vision.`,
       category: 'diseases'
     },
     'glaucoma': {
-      text: 'Glaucoma is called the "silent thief of sight" - often no symptoms until advanced stages. It affects 3.54% globally. **Warning:** Regular eye pressure checks and optic nerve exams are essential. Our AI can detect early structural changes.',
+      text: `⚡ **Glaucoma** - The "Silent Thief of Sight"
+
+**Critical Facts:**
+• Affects 3.54% of population globally
+• Often no symptoms until advanced
+• Leading cause of irreversible blindness
+• Can occur at any age, more common after 60
+
+**Types:**
+• Primary Open-Angle (90% of cases)
+• Angle-Closure (emergency!)
+• Normal-Tension
+• Secondary
+
+**Risk Factors:**
+• Age over 60
+• Family history
+• High eye pressure
+• Thin corneas
+• Diabetes
+
+**Prevention & Management:**
+• Regular eye pressure checks
+• Comprehensive eye exams every 1-2 years
+• Exercise regularly
+• Take prescribed eye drops consistently
+• Protect eyes from injury
+
+**Remember:** Once vision is lost to glaucoma, it cannot be restored. Early detection is crucial!`,
+      category: 'diseases'
+    },
+    'hypertensive retinopathy': {
+      text: `💓 **Hypertensive Retinopathy** - High blood pressure's effect on the eyes
+
+**Overview:**
+• Affects 8-15% of hypertensive patients
+• Early indicator of cardiovascular complications
+• Often reversible with proper BP control
+
+**Symptoms:**
+• Blurred or distorted vision
+• Headaches
+• Double vision
+• Light sensitivity
+
+**Grading System:**
+1. Grade 1: Mild arterial narrowing
+2. Grade 2: Arteriovenous crossing changes
+3. Grade 3: Cotton wool spots, hemorrhages
+4. Grade 4: Papilledema (severe)
+
+**Management:**
+• Maintain BP <130/80 mmHg
+• DASH diet (low sodium, high potassium)
+• Regular cardiovascular exercise
+• Stress management
+• Regular monitoring
+
+**Connection:** Retinal changes often mirror changes in brain, heart, and kidneys.`,
       category: 'diseases'
     },
     'prevention': {
-      text: '🛡️ **Essential Eye Health Tips:** 1) Annual comprehensive eye exams 2) Control diabetes & blood pressure 3) Wear UV-protective sunglasses 4) Diet rich in omega-3s & antioxidants 5) Don\'t smoke 6) Exercise regularly 7) Manage screen time',
+      text: `🛡️ **Comprehensive Eye Health Prevention Guide**
+
+**Essential Habits:**
+1. **Annual Eye Exams** - Early detection saves vision
+2. **Diabetes Management** - Keep HbA1c < 7%
+3. **Blood Pressure Control** - Target <130/80 mmHg
+4. **UV Protection** - Quality sunglasses daily
+5. **Healthy Diet** - Omega-3s, antioxidants, leafy greens
+6. **No Smoking** - Doubles risk of eye diseases
+7. **Regular Exercise** - Improves circulation
+8. **Screen Time Management** - 20-20-20 rule
+
+**Warning Signs:**
+• Sudden vision changes
+• Flashing lights or new floaters
+• Eye pain or pressure
+• Distorted vision
+
+**Nutrition for Eye Health:**
+• Lutein & Zeaxanthin (kale, spinach)
+• Omega-3 fatty acids (fish)
+• Vitamin C (citrus fruits)
+• Vitamin E (nuts, seeds)
+• Zinc (lean meats)
+
+Remember: Prevention is always better than treatment!`,
       category: 'prevention'
     },
-    'ai accuracy': {
-      text: 'Our **dual AI architecture** combines ResNet18 CNN + DeiT Small Vision Transformer = **96.1% accuracy** on medical datasets! Validated on EyePACS with 8+ disease types. Processing time: <1 second. HIPAA-compliant with 256-bit encryption.',
+    'ai technology': {
+      text: `🤖 **Reti-Doc AI Technology**
+
+**Dual Neural Network Architecture:**
+• **ResNet18 CNN** - Texture pattern recognition
+• **DeiT Vision Transformer** - Global feature extraction
+• **Ensemble Fusion** - Combined predictions
+
+**Performance Metrics:**
+• 96.1% accuracy on medical datasets
+• <1 second analysis time
+• Validated on EyePACS dataset
+• 8+ disease types detected
+
+**Security & Compliance:**
+• HIPAA-compliant platform
+• 256-bit end-to-end encryption
+• Secure cloud infrastructure
+• Comprehensive audit logging
+
+**Detectable Conditions:**
+✓ Diabetic Retinopathy (all stages)
+✓ Age-Related Macular Degeneration
+✓ Glaucoma
+✓ Hypertensive Retinopathy
+✓ Retinal Detachment
+✓ Macular Edema
+✓ Other retinal pathologies
+
+**How It Works:**
+1. Image preprocessing & enhancement
+2. Dual AI analysis
+3. Feature extraction & fusion
+4. Confidence scoring
+5. Detailed report generation
+
+Ready to experience AI-powered eye care?`,
       category: 'ai-system'
     },
-    'how it works': {
-      text: '🧠 **Our AI Process:** 1) **Image Preprocessing** - Normalizes & enhances retinal images 2) **Dual Model Analysis** - CNN extracts textures, Transformer captures global features 3) **Ensemble Fusion** - Combines predictions for final diagnosis with confidence scoring',
-      category: 'ai-system'
+    'symptoms emergency': {
+      text: `🚨 **URGENT EYE SYMPTOMS - SEEK IMMEDIATE CARE**
+
+**Call 911 or Go to ER:**
+• Sudden complete vision loss
+• Severe eye pain with nausea/vomiting
+• Chemical burns to the eye
+• Traumatic eye injury
+• Sudden double vision with headache
+
+**Contact Eye Doctor Immediately:**
+• Sudden partial vision loss
+• New flashing lights or shower of floaters
+• Curtain-like shadow in vision
+• Sudden onset of severe light sensitivity
+• Eye pain with vision changes
+
+**Same-Day Appointment Needed:**
+• Gradual vision loss over days
+• Persistent eye pain
+• New distortion in central vision
+• Halos around lights at night
+• Discharge with vision changes
+
+**General Eye Health Tips:**
+• Never ignore sudden vision changes
+• Keep emergency eye care numbers handy
+• Protect eyes during sports/work
+• Know your family eye health history
+
+**Remember:** Time is vision - don't delay seeking care for concerning symptoms!`,
+      category: 'emergency'
     },
-    'symptoms warning': {
-      text: '⚠️ **Seek immediate medical attention if you experience:** • Sudden vision loss • Flashing lights or floaters • Curtain-like vision loss • Severe eye pain • Distorted vision • Dark spots in central vision. Early detection saves sight!',
-      category: 'symptoms'
+    'nutrition eye health': {
+      text: `🥗 **Nutrition for Optimal Eye Health**
+
+**Key Nutrients & Food Sources:**
+
+**Lutein & Zeaxanthin** (Macular protection):
+• Dark leafy greens (kale, spinach)
+• Broccoli, peas, corn
+• Egg yolks
+
+**Omega-3 Fatty Acids** (Retinal health):
+• Fatty fish (salmon, tuna, sardines)
+• Walnuts, flaxseeds
+• Chia seeds
+
+**Vitamin A** (Night vision):
+• Carrots, sweet potatoes
+• Liver, dairy products
+• Dark leafy greens
+
+**Vitamin C** (Antioxidant protection):
+• Citrus fruits, berries
+• Bell peppers, tomatoes
+• Broccoli, strawberries
+
+**Vitamin E** (Cell protection):
+• Nuts and seeds
+• Vegetable oils
+• Avocados
+
+**Zinc** (Retinal health):
+• Oysters, beef, pork
+• Beans, nuts
+• Whole grains
+
+**AREDS Formula Benefits:**
+Proven to reduce AMD progression by 25% in high-risk patients.
+
+**Hydration:** Adequate water intake supports tear production and eye moisture.`,
+      category: 'nutrition'
     }
   };
 
@@ -123,32 +359,103 @@ const ChatBot: React.FC<ChatBotProps> = ({ isFullPage = false }) => {
     const message = userMessage.toLowerCase();
     
     if (message.includes('diabetic') || message.includes('diabetes')) {
-      return medicalResponses['diabetic retinopathy'];
+      return educationalResponses['diabetic retinopathy'];
     } else if (message.includes('macular') || message.includes('amd')) {
-      return medicalResponses['macular degeneration'];
+      return educationalResponses['macular degeneration'];
     } else if (message.includes('glaucoma')) {
-      return medicalResponses['glaucoma'];
+      return educationalResponses['glaucoma'];
+    } else if (message.includes('hypertensive') || message.includes('blood pressure')) {
+      return educationalResponses['hypertensive retinopathy'];
     } else if (message.includes('prevention') || message.includes('prevent') || message.includes('tips') || message.includes('care')) {
-      return medicalResponses['prevention'];
-    } else if (message.includes('accuracy') || message.includes('model') || (message.includes('ai') && !message.includes('pain'))) {
-      return medicalResponses['ai accuracy'];
-    } else if (message.includes('how') && (message.includes('work') || message.includes('function') || message.includes('diagnosis'))) {
-      return medicalResponses['how it works'];
+      return educationalResponses['prevention'];
+    } else if (message.includes('nutrition') || message.includes('diet') || message.includes('food') || message.includes('vitamin')) {
+      return educationalResponses['nutrition eye health'];
+    } else if (message.includes('accuracy') || message.includes('model') || message.includes('technology') || (message.includes('ai') && !message.includes('pain'))) {
+      return educationalResponses['ai technology'];
+    } else if (message.includes('emergency') || message.includes('urgent') || message.includes('immediate') || message.includes('911')) {
+      return educationalResponses['symptoms emergency'];
     } else if (message.includes('symptom') || message.includes('warning') || message.includes('sign') || message.includes('pain') || message.includes('loss')) {
-      return medicalResponses['symptoms warning'];
+      return educationalResponses['symptoms emergency'];
     } else if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
       return {
-        text: 'Hello! 👋 I\'m your AI medical assistant. I can help with retinal diseases, prevention tips, AI system details, and symptom guidance. Choose a category above or ask me anything!',
+        text: `Hello! 👋 I'm Reti-Doc AI Assistant, your comprehensive guide to retinal health education!
+
+🏥 **I can help you with:**
+• **Retinal Diseases** - Diabetic retinopathy, AMD, glaucoma, hypertensive retinopathy
+• **Prevention & Care** - Evidence-based tips for optimal eye health
+• **AI Technology** - How our 96.1% accurate diagnostic system works
+• **Symptoms & Emergency Care** - When to seek immediate attention
+• **Nutrition** - Foods and nutrients that support eye health
+
+Choose a category above or ask me anything specific! Remember, I provide educational information but always consult healthcare professionals for medical advice.`,
         category: 'welcome'
       };
     } else if (message.includes('help')) {
       return {
-        text: 'I\'m here to help! 🔍 **I can assist with:** • Retinal disease information • Prevention strategies • AI diagnostic system details • Symptom guidance • General eye health tips. What interests you most?',
+        text: `🔍 **I'm here to provide comprehensive retinal health education!**
+
+**My Knowledge Areas:**
+📚 **Disease Education** - Detailed information on retinal conditions
+🛡️ **Prevention Strategies** - Evidence-based eye health tips
+🤖 **AI Technology** - How our diagnostic system achieves 96.1% accuracy
+🚨 **Emergency Guidance** - When to seek immediate medical care
+🥗 **Nutrition** - Foods and supplements for eye health
+
+**Quick Start Options:**
+• Type "diabetic retinopathy" for diabetes-related eye complications
+• Ask "prevention tips" for eye health strategies
+• Say "AI technology" to learn about our diagnostic system
+• Type "emergency symptoms" for urgent warning signs
+
+What would you like to explore first?`,
         category: 'help'
+      };
+    } else if (message.includes('reti-doc') || message.includes('platform') || message.includes('system')) {
+      return {
+        text: `🏥 **Welcome to Reti-Doc - Advanced AI Retinal Healthcare Platform**
+
+**Our Mission:** Democratizing eye health through AI-powered early detection and comprehensive education.
+
+**Platform Highlights:**
+• 96.1% diagnostic accuracy with dual AI architecture
+• Real-time analysis in <1 second
+• HIPAA-compliant and secure
+• 8+ detectable retinal conditions
+• Comprehensive educational resources
+
+**For Healthcare Providers:**
+✓ Clinical decision support
+✓ Standardized screening protocols
+✓ Patient management tools
+✓ Educational resources
+
+**For Patients:**
+✓ Early disease detection
+✓ Educational content library
+✓ Prevention guidance
+✓ Risk assessment tools
+
+Ready to experience the future of retinal healthcare? Ask me about any specific feature!`,
+        category: 'platform'
       };
     } else {
       return {
-        text: 'Thank you for your question! 💡 For specific medical concerns, please consult a healthcare professional. I provide general information about retinal diseases, prevention, and our AI system. Could you be more specific about what you\'d like to know?',
+        text: `Thank you for your question! 💡 
+
+I specialize in retinal health education and can provide detailed information about:
+• **Retinal diseases** (diabetic retinopathy, AMD, glaucoma, etc.)
+• **Prevention strategies** and eye health tips
+• **Our AI diagnostic technology** and how it works
+• **Emergency symptoms** and when to seek care
+• **Nutrition** for optimal eye health
+
+Could you be more specific about what you'd like to learn? For immediate medical concerns, please contact your healthcare provider.
+
+**Helpful prompts to try:**
+- "Tell me about diabetic retinopathy"
+- "Eye health prevention tips"
+- "How does your AI work?"
+- "Emergency eye symptoms"`,
         category: 'general'
       };
     }

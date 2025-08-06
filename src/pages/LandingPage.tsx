@@ -26,10 +26,9 @@ const LandingPage = () => {
 
   const navigation = [
     { name: 'Home', id: 'overview', icon: Eye },
+    { name: 'About', id: 'about', icon: Users },
     { name: 'Features', id: 'features', icon: Zap },
-    { name: 'Scan', id: 'scan', icon: Scan },
-    { name: 'AI Model', id: 'training', icon: Brain },
-    { name: 'Chat', id: 'chat', icon: MessageSquare },
+    { name: 'Education', id: 'education', icon: BookOpen },
     { name: 'Contact', id: 'contact', icon: Phone },
   ];
 
@@ -64,46 +63,58 @@ const LandingPage = () => {
     }
   ];
 
-  const diseases = [
+  const educationalContent = [
     {
-      name: 'Diabetic Retinopathy',
-      description: 'Leading cause of blindness in diabetic patients. Early detection prevents 95% of severe vision loss.',
+      title: 'Diabetic Retinopathy',
+      description: 'Leading cause of blindness in diabetic patients affecting blood vessels in the retina.',
       severity: 'Critical',
       prevalence: '34.6% of diabetic patients',
       icon: AlertTriangle,
       color: 'text-red-500',
-      bgColor: 'bg-red-50',
-      borderColor: 'border-red-200'
+      bgColor: 'bg-red-50 dark:bg-red-950/20',
+      borderColor: 'border-red-200 dark:border-red-800',
+      symptoms: ['Blurred vision', 'Dark spots', 'Vision loss', 'Difficulty seeing at night'],
+      prevention: ['Regular eye exams', 'Blood sugar control', 'Blood pressure management', 'Healthy lifestyle'],
+      stages: ['Mild nonproliferative', 'Moderate nonproliferative', 'Severe nonproliferative', 'Proliferative']
     },
     {
-      name: 'Macular Degeneration',
-      description: 'Age-related condition affecting central vision. Most common cause of vision loss in people over 50.',
+      title: 'Age-Related Macular Degeneration',
+      description: 'Progressive eye condition affecting central vision, most common in adults over 50.',
       severity: 'High',
       prevalence: '8.7% of adults over 45',
       icon: Eye,
       color: 'text-orange-500',
-      bgColor: 'bg-orange-50',
-      borderColor: 'border-orange-200'
+      bgColor: 'bg-orange-50 dark:bg-orange-950/20',
+      borderColor: 'border-orange-200 dark:border-orange-800',
+      symptoms: ['Central vision loss', 'Straight lines appear wavy', 'Difficulty reading', 'Color perception changes'],
+      prevention: ['UV protection', 'Antioxidant vitamins', 'No smoking', 'Regular exercise'],
+      stages: ['Early AMD', 'Intermediate AMD', 'Late AMD (Dry)', 'Late AMD (Wet)']
     },
     {
-      name: 'Glaucoma',
-      description: 'Silent thief of sight. Often symptomless until advanced stages.',
+      title: 'Glaucoma',
+      description: 'Group of eye diseases that damage the optic nerve, often called the "silent thief of sight".',
       severity: 'High',
       prevalence: '3.54% globally',
       icon: Target,
       color: 'text-yellow-500',
-      bgColor: 'bg-yellow-50',
-      borderColor: 'border-yellow-200'
+      bgColor: 'bg-yellow-50 dark:bg-yellow-950/20',
+      borderColor: 'border-yellow-200 dark:border-yellow-800',
+      symptoms: ['Gradual vision loss', 'Tunnel vision', 'Eye pain', 'Halos around lights'],
+      prevention: ['Regular eye pressure checks', 'Exercise regularly', 'Protect eyes from injury', 'Take prescribed eye drops'],
+      stages: ['Suspect glaucoma', 'Early glaucoma', 'Moderate glaucoma', 'Advanced glaucoma']
     },
     {
-      name: 'Hypertensive Retinopathy',
-      description: 'Damage caused by high blood pressure. Early indicator of cardiovascular complications.',
+      title: 'Hypertensive Retinopathy',
+      description: 'Retinal damage caused by high blood pressure affecting the blood vessels in the retina.',
       severity: 'Moderate',
       prevalence: '8-15% of hypertensive patients',
       icon: Heart,
       color: 'text-blue-500',
-      bgColor: 'bg-blue-50',
-      borderColor: 'border-blue-200'
+      bgColor: 'bg-blue-50 dark:bg-blue-950/20',
+      borderColor: 'border-blue-200 dark:border-blue-800',
+      symptoms: ['Blurred vision', 'Headaches', 'Double vision', 'Vision loss'],
+      prevention: ['Blood pressure control', 'Regular monitoring', 'Healthy diet', 'Stress management'],
+      stages: ['Grade 1 (Mild)', 'Grade 2 (Moderate)', 'Grade 3 (Severe)', 'Grade 4 (Malignant)']
     }
   ];
 
@@ -397,10 +408,10 @@ const LandingPage = () => {
                   size="lg" 
                   variant="outline" 
                   className="border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-slate-900 text-lg px-8 py-4 h-auto"
-                  onClick={() => setActiveTab('scan')}
+                  onClick={() => setActiveTab('education')}
                 >
-                  Try Live Scan
-                  <Video className="ml-2 h-5 w-5" />
+                  Learn More
+                  <BookOpen className="ml-2 h-5 w-5" />
                 </Button>
               </div>
               
@@ -427,6 +438,68 @@ const LandingPage = () => {
         {/* Overview Tab */}
         {activeTab === 'overview' && (
           <div className="space-y-20">
+            {/* About Section */}
+            <section>
+              <div className="text-center mb-16">
+                <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
+                  About Reti-Doc
+                </h2>
+                <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
+                  Reti-Doc is a revolutionary AI-powered medical diagnostic platform specifically designed 
+                  for retinal disease detection and prevention. Our cutting-edge technology combines advanced 
+                  machine learning algorithms with medical expertise to provide accurate, fast, and accessible 
+                  eye health screening.
+                </p>
+              </div>
+              
+              <div className="grid lg:grid-cols-3 gap-8 mb-16">
+                <Card className="bg-card/80 backdrop-blur border-primary/20">
+                  <CardHeader>
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                      <Target className="h-6 w-6 text-primary" />
+                    </div>
+                    <CardTitle className="text-foreground">Our Mission</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">
+                      To democratize eye health screening and make early detection of retinal diseases 
+                      accessible to everyone, regardless of geographical or economic barriers.
+                    </p>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-card/80 backdrop-blur border-accent/20">
+                  <CardHeader>
+                    <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
+                      <Shield className="h-6 w-6 text-accent" />
+                    </div>
+                    <CardTitle className="text-foreground">Our Vision</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">
+                      A world where preventable vision loss is eliminated through AI-powered early 
+                      detection and comprehensive eye health education.
+                    </p>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-card/80 backdrop-blur border-primary/20">
+                  <CardHeader>
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                      <Users className="h-6 w-6 text-primary" />
+                    </div>
+                    <CardTitle className="text-foreground">Our Impact</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">
+                      Empowering healthcare providers and patients with accurate diagnostic tools 
+                      and educational resources for better eye health outcomes.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </section>
+
             {/* Core Features */}
             <section>
               <div className="text-center mb-16">
@@ -677,7 +750,7 @@ const LandingPage = () => {
               </div>
               
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {diseases.map((disease, index) => (
+                {educationalContent.map((disease, index) => (
                   <Card key={index} className={`hover:shadow-xl transition-all duration-300 ${disease.bgColor} border-2 ${disease.borderColor}`}>
                     <CardHeader>
                       <div className="flex items-center space-x-4">
@@ -685,21 +758,48 @@ const LandingPage = () => {
                           <disease.icon className={`h-8 w-8 ${disease.color}`} />
                         </div>
                         <div>
-                          <CardTitle className="text-xl font-bold">{disease.name}</CardTitle>
+                          <CardTitle className="text-xl font-bold text-foreground">{disease.title}</CardTitle>
                           <Badge variant="outline" className={`${disease.color} border-current`}>
                             {disease.severity} Risk
                           </Badge>
                         </div>
                       </div>
                     </CardHeader>
-                    <CardContent>
-                      <p className="text-slate-800 mb-4 leading-relaxed">{disease.description}</p>
-                      <div className="flex items-center justify-between">
-                        <div className="text-sm text-slate-300">
+                    <CardContent className="space-y-4">
+                      <p className="text-muted-foreground leading-relaxed">{disease.description}</p>
+                      
+                      {/* Symptoms */}
+                      <div>
+                        <h4 className="font-semibold text-foreground mb-2">Symptoms:</h4>
+                        <ul className="text-sm text-muted-foreground space-y-1">
+                          {disease.symptoms.map((symptom, i) => (
+                            <li key={i} className="flex items-center">
+                              <span className="w-1.5 h-1.5 bg-current rounded-full mr-2"></span>
+                              {symptom}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      
+                      {/* Prevention */}
+                      <div>
+                        <h4 className="font-semibold text-foreground mb-2">Prevention:</h4>
+                        <ul className="text-sm text-muted-foreground space-y-1">
+                          {disease.prevention.map((tip, i) => (
+                            <li key={i} className="flex items-center">
+                              <span className="w-1.5 h-1.5 bg-current rounded-full mr-2"></span>
+                              {tip}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      
+                      <div className="flex items-center justify-between pt-2 border-t border-border">
+                        <div className="text-sm text-muted-foreground">
                           <strong>Prevalence:</strong> {disease.prevalence}
                         </div>
-                        <Button size="sm" className="btn-medical">
-                          Learn More
+                        <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                          Ask AI Assistant
                         </Button>
                       </div>
                     </CardContent>
@@ -735,105 +835,44 @@ const LandingPage = () => {
           </div>
         )}
 
-        {/* Live Scan Tab */}
-        {activeTab === 'scan' && (
-          <div className="space-y-20">
-            <section>
-              <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-                  Live Retinal Scan
-                </h2>
-                <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-                  Real-time camera-based retinal analysis for instant results
+        {/* Remove scan and training tabs - they're now in user/admin dashboards */}
+
+        {/* Educational AI Assistant */}
+        <div className="fixed bottom-6 right-6 z-50">
+          <Button
+            onClick={() => setIsChatBotOpen(!isChatBotOpen)}
+            className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full w-16 h-16 shadow-lg hover:shadow-xl transition-all duration-300"
+          >
+            <MessageSquare className="h-6 w-6" />
+          </Button>
+          
+          {isChatBotOpen && (
+            <div className="absolute bottom-20 right-0 w-96 h-[500px] bg-background border border-border rounded-lg shadow-2xl animate-scale-in">
+              <div className="p-4 border-b border-border bg-primary text-primary-foreground rounded-t-lg">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <Bot className="h-5 w-5" />
+                    <h3 className="font-semibold">Reti-Doc AI Assistant</h3>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setIsChatBotOpen(false)}
+                    className="text-primary-foreground hover:bg-primary-foreground/20"
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                </div>
+                <p className="text-sm text-primary-foreground/80 mt-1">
+                  Ask about retinal diseases, symptoms, and prevention
                 </p>
               </div>
-              
-              <div className="max-w-4xl mx-auto">
-                <Card className="card-medical">
-                  <CardHeader className="text-center">
-                    <CardTitle className="text-2xl font-bold">AI-Powered Real-time Analysis</CardTitle>
-                    <CardDescription>
-                      Position your eye close to the camera for optimal scanning
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="aspect-video bg-gray-900 rounded-xl overflow-hidden mb-6 relative">
-                      <video 
-                        ref={videoRef} 
-                        autoPlay 
-                        playsInline 
-                        muted
-                        className="w-full h-full object-cover"
-                      />
-                      <canvas ref={canvasRef} className="hidden" />
-                      
-                      {!isScanning && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-gray-900/50">
-                          <div className="text-center text-white">
-                            <Camera className="h-16 w-16 mx-auto mb-4 opacity-50" />
-                            <p className="text-lg">Camera not active</p>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                    
-                    <div className="flex justify-center space-x-4">
-                      {!isScanning ? (
-                        <Button onClick={startCamera} className="btn-medical">
-                          <Camera className="mr-2 h-5 w-5" />
-                          Start Camera
-                        </Button>
-                      ) : (
-                        <>
-                          <Button onClick={captureImage} className="btn-neural">
-                            <Scan className="mr-2 h-5 w-5" />
-                            Capture & Analyze
-                          </Button>
-                          <Button onClick={stopCamera} variant="outline" className="btn-outline-medical">
-                            <X className="mr-2 h-5 w-5" />
-                            Stop Camera
-                          </Button>
-                        </>
-                      )}
-                    </div>
-                    
-                    <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                      <p className="text-sm text-blue-800">
-                        <strong>Note:</strong> This is a demonstration. For accurate medical diagnosis, 
-                        please register and use our full diagnostic platform.
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
+              <div className="h-[400px]">
+                <ChatBot />
               </div>
-            </section>
-          </div>
-        )}
-
-        {/* AI Training Tab */}
-        {activeTab === 'training' && (
-          <div className="space-y-20">
-            <ModelUpload />
-          </div>
-        )}
-
-        {/* Chat Support Tab */}
-        {activeTab === 'chat' && (
-          <div className="space-y-8">
-            <div className="text-center">
-              <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-                AI Medical Assistant
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-                Get instant medical guidance and support from our intelligent AI chatbot
-              </p>
             </div>
-            
-            <div className="h-[600px] mb-20">
-              <ChatBot isFullPage={true} />
-            </div>
-          </div>
-        )}
+          )}
+        </div>
 
         {/* Contact Tab */}
         {activeTab === 'contact' && (
