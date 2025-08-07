@@ -200,13 +200,13 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-slate-900 to-cyan-900 dark:from-slate-950 dark:via-blue-950 dark:to-slate-900 text-white relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-slate-900 to-cyan-900 dark:from-slate-950 dark:via-blue-950 dark:to-slate-900 text-white relative overflow-x-hidden">
       {/* Tech Background Pattern */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-transparent to-cyan-600/20" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_50%)]" />
       
       {/* Content */}
-      <div className="relative z-10">
+      <div className="relative z-10 w-full">
         {/* Modern Navigation */}
         <nav className="bg-slate-900/80 backdrop-blur-lg shadow-xl border-b border-slate-700/50 sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -330,8 +330,8 @@ const LandingPage = () => {
       </nav>
 
         {/* Hero Section */}
-        <section className="pt-20 pb-32 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
+        <section className="pt-20 pb-32 px-4 sm:px-6 lg:px-8 w-full">
+          <div className="max-w-7xl mx-auto w-full">
             <div className="text-center mb-16 animate-fade-in">
               <Badge className="mb-6 px-4 py-2 text-sm font-medium bg-primary/10 text-primary border-primary/20 animate-scale-in">
                 <Activity className="h-4 w-4 mr-2" />
@@ -753,41 +753,82 @@ const LandingPage = () => {
             </section>
           </div>
         )}
+        
+        {/* Vision AI Chat Section */}
+        {activeTab === 'overview' && (
+          <div className="space-y-20">
+            <section className="py-20 px-4 sm:px-6 lg:px-8">
+              <div className="max-w-7xl mx-auto">
+                <div className="text-center mb-12">
+                  <Badge className="mb-4 px-4 py-2 text-sm font-medium bg-primary/10 text-primary border-primary/20">
+                    <Eye className="h-4 w-4 mr-2" />
+                    AI Vision Analysis
+                  </Badge>
+                  <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
+                    AI-Powered Retinal Image Analysis
+                  </h2>
+                  <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-8">
+                    Upload retinal images and get instant AI-powered insights about CNV, DME, Drusen, and retinal health. 
+                    Our vision AI provides educational analysis to help you understand retinal conditions.
+                  </p>
+                </div>
+                
+                <div className="bg-slate-900/30 backdrop-blur-md rounded-3xl p-6 lg:p-8 border border-slate-700/50">
+                  <VisionChatBot isFullPage={false} className="w-full" />
+                </div>
+              </div>
+            </section>
+          </div>
+        )}
 
         {/* Remove scan and training tabs - they're now in user/admin dashboards */}
 
-        {/* Educational AI Assistant */}
+        {/* Features Tab */}
+        {activeTab === 'features' && (
+          <div className="space-y-20 py-20 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto">
+              <div className="text-center mb-16">
+                <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
+                  Advanced Features
+                </h2>
+                <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+                  Cutting-edge AI technology for comprehensive retinal health analysis
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {features.map((feature, index) => (
+                  <Card key={index} className={`hover:shadow-2xl transition-all duration-300 ${getThemeClasses(feature.theme)}`}>
+                    <CardHeader>
+                      <div className={`gradient-${feature.theme} p-4 rounded-2xl shadow-lg mb-4 w-fit`}>
+                        <feature.icon className="h-8 w-8 text-white" />
+                      </div>
+                      <CardTitle className="text-xl font-bold">{feature.title}</CardTitle>
+                      <CardDescription className="text-muted-foreground">{feature.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="text-2xl font-bold text-primary mb-2">{feature.metrics}</div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Educational Floating ChatBot - Simplified */}
         <div className="fixed bottom-6 right-6 z-50">
           <Button
             onClick={() => setIsChatBotOpen(!isChatBotOpen)}
-            className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full w-16 h-16 shadow-lg hover:shadow-xl transition-all duration-300"
+            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full w-16 h-16 shadow-lg hover:shadow-xl transition-all duration-300"
           >
-            <MessageSquare className="h-6 w-6" />
+            <Eye className="h-6 w-6" />
           </Button>
           
           {isChatBotOpen && (
-            <div className="absolute bottom-20 right-0 w-96 h-[500px] bg-background border border-border rounded-lg shadow-2xl animate-scale-in">
-              <div className="p-4 border-b border-border bg-primary text-primary-foreground rounded-t-lg">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <Bot className="h-5 w-5" />
-                    <h3 className="font-semibold">Reti-Doc AI Assistant</h3>
-                  </div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setIsChatBotOpen(false)}
-                    className="text-primary-foreground hover:bg-primary-foreground/20"
-                  >
-                    <X className="h-4 w-4" />
-                  </Button>
-                </div>
-                <p className="text-sm text-primary-foreground/80 mt-1">
-                  Ask about retinal diseases, symptoms, and prevention
-                </p>
-              </div>
-              <div className="h-[400px]">
-                <VisionChatBot />
+            <div className="absolute bottom-20 right-0 w-96 max-w-[90vw] h-[600px] max-h-[80vh] bg-background border border-border rounded-lg shadow-2xl animate-scale-in overflow-hidden">
+              <div className="h-full">
+                <VisionChatBot isFullPage={true} />
               </div>
             </div>
           )}
@@ -795,8 +836,8 @@ const LandingPage = () => {
 
         {/* Contact Tab */}
         {activeTab === 'contact' && (
-          <div className="space-y-20">
-            <section>
+          <div className="space-y-20 py-20 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto">
               <div className="text-center mb-16">
                 <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
                   Get in Touch
@@ -879,7 +920,7 @@ const LandingPage = () => {
                   </form>
                 </div>
               </div>
-            </section>
+            </div>
           </div>
         )}
       </div>

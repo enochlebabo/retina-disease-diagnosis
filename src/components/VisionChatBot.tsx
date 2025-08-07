@@ -200,10 +200,10 @@ const VisionChatBot: React.FC<VisionChatBotProps> = ({ isFullPage = false, class
   }, [messages]);
 
   return (
-    <div className={`${isFullPage ? 'w-full h-full' : 'w-full max-w-4xl mx-auto'} ${className}`}>
+    <div className={`w-full ${isFullPage ? 'h-full' : 'max-w-5xl mx-auto'} ${className}`}>
       <Card className={`shadow-2xl border-2 border-border/50 backdrop-blur-sm transition-all duration-300 ${
-        isFullPage ? 'h-full' : isMinimized ? 'h-16' : 'h-[700px] max-h-[85vh]'
-      } flex flex-col overflow-hidden`}>
+        isFullPage ? 'h-full' : isMinimized ? 'h-16' : 'h-[600px] sm:h-[650px] lg:h-[700px]'
+      } flex flex-col overflow-hidden w-full`}>
         <CardHeader className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 text-white p-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -235,9 +235,9 @@ const VisionChatBot: React.FC<VisionChatBotProps> = ({ isFullPage = false, class
         </CardHeader>
 
         {!isMinimized && (
-          <CardContent className="flex-1 flex flex-col p-0 min-h-0">
+          <CardContent className="flex-1 flex flex-col p-0 min-h-0 overflow-hidden">
             {/* Quick Actions */}
-            <div className="p-3 sm:p-4 bg-muted/30 border-b border-border">
+            <div className="p-3 sm:p-4 bg-muted/30 border-b border-border flex-shrink-0">
               <div className="flex flex-wrap gap-2 mb-3">
                 <Button
                   variant="outline"
@@ -276,7 +276,7 @@ const VisionChatBot: React.FC<VisionChatBotProps> = ({ isFullPage = false, class
 
             {/* Camera View */}
             {isUsingCamera && (
-              <div className="p-4 bg-black/90 text-center">
+              <div className="p-4 bg-black/90 text-center flex-shrink-0">
                 <video
                   ref={videoRef}
                   autoPlay
@@ -298,7 +298,7 @@ const VisionChatBot: React.FC<VisionChatBotProps> = ({ isFullPage = false, class
 
             {/* Image Preview */}
             {imagePreview && (
-              <div className="p-4 bg-muted/50 border-b border-border">
+              <div className="p-4 bg-muted/50 border-b border-border flex-shrink-0">
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="text-sm font-semibold">Image Ready for Analysis</h4>
                   <Button
@@ -320,8 +320,9 @@ const VisionChatBot: React.FC<VisionChatBotProps> = ({ isFullPage = false, class
 
             {/* Messages */}
             <div className="flex-1 overflow-hidden min-h-0">
-              <ScrollArea className="h-full p-3 sm:p-4">
-                <div className="space-y-4 sm:space-y-6 min-h-full">
+              <ScrollArea className="h-full">
+                <div className="p-3 sm:p-4 space-y-4 sm:space-y-6"
+                     style={{ minHeight: '200px' }}>
                   {messages.map((message) => (
                     <div
                       key={message.id}
@@ -391,8 +392,8 @@ const VisionChatBot: React.FC<VisionChatBotProps> = ({ isFullPage = false, class
             </div>
 
             {/* Input Area */}
-            <div className="p-3 sm:p-4 border-t border-border bg-background">
-              <div className="flex space-x-2 sm:space-x-3">
+            <div className="p-3 sm:p-4 border-t border-border bg-background flex-shrink-0">
+              <div className="flex space-x-2 sm:space-x-3 w-full max-w-4xl mx-auto">
                 <Input
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
@@ -411,7 +412,7 @@ const VisionChatBot: React.FC<VisionChatBotProps> = ({ isFullPage = false, class
                 </Button>
               </div>
               
-              <div className="flex items-center justify-between mt-2 sm:mt-3">
+              <div className="flex items-center justify-between mt-2 sm:mt-3 w-full max-w-4xl mx-auto">
                 <p className="text-xs text-muted-foreground flex items-center">
                   <HelpCircle className="h-3 w-3 mr-1" />
                   <span className="hidden sm:inline">For educational purposes only - not for medical diagnosis</span>
