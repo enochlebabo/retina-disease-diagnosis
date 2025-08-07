@@ -118,52 +118,6 @@ const LandingPage = () => {
     }
   ];
 
-  const systemModules = [
-    {
-      category: 'Frontend Architecture',
-      icon: Monitor,
-      theme: 'tech',
-      modules: [
-        { name: 'React.js UI Components', description: 'Modern responsive interface with real-time updates' },
-        { name: 'Camera Integration', description: 'Live video streaming with WebRTC support' },
-        { name: 'Result Visualization', description: 'Interactive disease prediction displays' },
-        { name: 'Chat Interface', description: 'Real-time medical consultation system' }
-      ]
-    },
-    {
-      category: 'AI/ML Backend',
-      icon: Brain,
-      theme: 'neural',
-      modules: [
-        { name: 'ResNet18 CNN', description: 'Deep learning for texture pattern recognition' },
-        { name: 'DeiT Transformer', description: 'Vision transformer for global feature extraction' },
-        { name: 'Ensemble Fusion', description: 'Multi-model prediction combination' },
-        { name: 'Preprocessing Pipeline', description: 'Image normalization and augmentation' }
-      ]
-    },
-    {
-      category: 'Medical Intelligence',
-      icon: Stethoscope,
-      theme: 'medical',
-      modules: [
-        { name: 'Disease Classification', description: 'Multi-class retinal pathology detection' },
-        { name: 'Recommendation Engine', description: 'Personalized treatment suggestions' },
-        { name: 'Risk Assessment', description: 'Severity scoring and progression analysis' },
-        { name: 'Clinical Decision Support', description: 'Evidence-based medical guidance' }
-      ]
-    },
-    {
-      category: 'Security & Compliance',
-      icon: Shield,
-      theme: 'medical',
-      modules: [
-        { name: 'HIPAA Compliance', description: 'Medical data privacy and security standards' },
-        { name: 'Data Encryption', description: 'End-to-end encryption for patient data' },
-        { name: 'Audit Logging', description: 'Comprehensive access and usage tracking' },
-        { name: 'Cloud Security', description: 'Secure deployment and data storage' }
-      ]
-    }
-  ];
 
   const stats = [
     { value: '96.1%', label: 'AI Accuracy', icon: Target },
@@ -529,45 +483,6 @@ const LandingPage = () => {
               </div>
             </section>
 
-            {/* System Architecture */}
-            <section>
-              <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-                  System Architecture
-                </h2>
-                <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-                  Comprehensive overview of our medical AI platform
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {systemModules.map((category, index) => (
-                  <Card key={index} className={`hover:shadow-2xl transition-all duration-300 ${getThemeClasses(category.theme)}`}>
-                    <CardHeader>
-                      <div className="flex items-center space-x-4">
-                        <div className={`gradient-${category.theme} p-4 rounded-2xl shadow-lg`}>
-                          <category.icon className="h-6 w-6 text-white" />
-                        </div>
-                        <CardTitle className="text-xl font-bold">{category.category}</CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
-                        {category.modules.map((module, idx) => (
-                          <div key={idx} className="flex items-start space-x-3 p-3 rounded-lg bg-white/50">
-                            <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <div>
-                               <div className="font-semibold text-white text-sm">{module.name}</div>
-                               <div className="text-xs text-slate-300">{module.description}</div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </section>
           </div>
         )}
 
