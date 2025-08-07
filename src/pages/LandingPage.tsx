@@ -12,7 +12,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import ChatBot from '@/components/ChatBot';
+import VisionChatBot from '@/components/VisionChatBot';
 import ModelUpload from '@/components/ModelUpload';
 
 const LandingPage = () => {
@@ -787,7 +787,7 @@ const LandingPage = () => {
                 </p>
               </div>
               <div className="h-[400px]">
-                <ChatBot />
+                <VisionChatBot />
               </div>
             </div>
           )}
