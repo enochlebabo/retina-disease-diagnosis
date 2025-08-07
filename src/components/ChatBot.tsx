@@ -52,7 +52,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ isFullPage = false, className = '' })
       color: 'text-red-500',
       bgColor: 'bg-red-50',
       borderColor: 'border-red-200',
-      description: 'Learn about diabetic retinopathy, macular degeneration, glaucoma'
+      description: 'Learn about CNV, DME, drusen, and normal retina'
     },
     {
       id: 'prevention',
@@ -84,386 +84,13 @@ const ChatBot: React.FC<ChatBotProps> = ({ isFullPage = false, className = '' })
   ];
 
   const quickSuggestions = [
-    { text: "What is diabetic retinopathy?", category: "diseases" },
+    { text: "What is CNV?", category: "diseases" },
     { text: "How accurate is your AI?", category: "ai-system" },
     { text: "Tips for preventing eye diseases", category: "prevention" },
-    { text: "What are the warning signs of vision problems?", category: "symptoms" },
-    { text: "How does the AI diagnosis work?", category: "ai-system" },
+    { text: "What are the warning signs of DME?", category: "symptoms" },
+    { text: "Tell me about drusen", category: "diseases" },
     { text: "Diet recommendations for eye health", category: "prevention" }
   ];
-
-  const educationalResponses = {
-    'diabetic retinopathy': {
-      text: `🔍 **Diabetic Retinopathy** - Leading cause of blindness in diabetic patients
-
-**Quick Facts:**
-• Affects 34.6% of diabetic patients
-• Prevents 95% of severe vision loss when detected early
-• Our AI achieves 96.1% detection accuracy
-
-**Symptoms to Watch:**
-• Blurred vision
-• Dark spots or floaters
-• Difficulty seeing at night
-• Vision loss
-
-**Prevention Strategies:**
-• Annual comprehensive eye exams
-• Maintain HbA1c < 7%
-• Control blood pressure
-• Regular exercise
-• Healthy diet
-
-**Stages:**
-1. Mild nonproliferative
-2. Moderate nonproliferative  
-3. Severe nonproliferative
-4. Proliferative (advanced)
-
-Would you like to know more about any specific aspect?`,
-      category: 'diseases'
-    },
-    'macular degeneration': {
-      text: `👁️ **Age-Related Macular Degeneration (AMD)** - Progressive condition affecting central vision
-
-**Key Statistics:**
-• Affects 8.7% of adults over 45
-• Leading cause of vision loss in people over 50
-• Two types: Dry (90%) and Wet (10%)
-
-**Symptoms:**
-• Central vision loss or blurriness
-• Straight lines appear wavy
-• Difficulty reading
-• Color perception changes
-
-**Risk Factors:**
-• Age over 50
-• Family history
-• Smoking
-• Cardiovascular disease
-
-**Prevention:**
-• UV-protective sunglasses
-• Antioxidant vitamins (AREDS formula)
-• Healthy diet with leafy greens
-• Regular exercise
-• No smoking
-
-**Early Detection:** Regular Amsler grid testing can help detect changes in central vision.`,
-      category: 'diseases'
-    },
-    'glaucoma': {
-      text: `⚡ **Glaucoma** - The "Silent Thief of Sight"
-
-**Critical Facts:**
-• Affects 3.54% of population globally
-• Often no symptoms until advanced
-• Leading cause of irreversible blindness
-• Can occur at any age, more common after 60
-
-**Types:**
-• Primary Open-Angle (90% of cases)
-• Angle-Closure (emergency!)
-• Normal-Tension
-• Secondary
-
-**Risk Factors:**
-• Age over 60
-• Family history
-• High eye pressure
-• Thin corneas
-• Diabetes
-
-**Prevention & Management:**
-• Regular eye pressure checks
-• Comprehensive eye exams every 1-2 years
-• Exercise regularly
-• Take prescribed eye drops consistently
-• Protect eyes from injury
-
-**Remember:** Once vision is lost to glaucoma, it cannot be restored. Early detection is crucial!`,
-      category: 'diseases'
-    },
-    'hypertensive retinopathy': {
-      text: `💓 **Hypertensive Retinopathy** - High blood pressure's effect on the eyes
-
-**Overview:**
-• Affects 8-15% of hypertensive patients
-• Early indicator of cardiovascular complications
-• Often reversible with proper BP control
-
-**Symptoms:**
-• Blurred or distorted vision
-• Headaches
-• Double vision
-• Light sensitivity
-
-**Grading System:**
-1. Grade 1: Mild arterial narrowing
-2. Grade 2: Arteriovenous crossing changes
-3. Grade 3: Cotton wool spots, hemorrhages
-4. Grade 4: Papilledema (severe)
-
-**Management:**
-• Maintain BP <130/80 mmHg
-• DASH diet (low sodium, high potassium)
-• Regular cardiovascular exercise
-• Stress management
-• Regular monitoring
-
-**Connection:** Retinal changes often mirror changes in brain, heart, and kidneys.`,
-      category: 'diseases'
-    },
-    'prevention': {
-      text: `🛡️ **Comprehensive Eye Health Prevention Guide**
-
-**Essential Habits:**
-1. **Annual Eye Exams** - Early detection saves vision
-2. **Diabetes Management** - Keep HbA1c < 7%
-3. **Blood Pressure Control** - Target <130/80 mmHg
-4. **UV Protection** - Quality sunglasses daily
-5. **Healthy Diet** - Omega-3s, antioxidants, leafy greens
-6. **No Smoking** - Doubles risk of eye diseases
-7. **Regular Exercise** - Improves circulation
-8. **Screen Time Management** - 20-20-20 rule
-
-**Warning Signs:**
-• Sudden vision changes
-• Flashing lights or new floaters
-• Eye pain or pressure
-• Distorted vision
-
-**Nutrition for Eye Health:**
-• Lutein & Zeaxanthin (kale, spinach)
-• Omega-3 fatty acids (fish)
-• Vitamin C (citrus fruits)
-• Vitamin E (nuts, seeds)
-• Zinc (lean meats)
-
-Remember: Prevention is always better than treatment!`,
-      category: 'prevention'
-    },
-    'ai technology': {
-      text: `🤖 **Reti-Doc AI Technology**
-
-**Dual Neural Network Architecture:**
-• **ResNet18 CNN** - Texture pattern recognition
-• **DeiT Vision Transformer** - Global feature extraction
-• **Ensemble Fusion** - Combined predictions
-
-**Performance Metrics:**
-• 96.1% accuracy on medical datasets
-• <1 second analysis time
-• Validated on EyePACS dataset
-• 8+ disease types detected
-
-**Security & Compliance:**
-• HIPAA-compliant platform
-• 256-bit end-to-end encryption
-• Secure cloud infrastructure
-• Comprehensive audit logging
-
-**Detectable Conditions:**
-✓ Diabetic Retinopathy (all stages)
-✓ Age-Related Macular Degeneration
-✓ Glaucoma
-✓ Hypertensive Retinopathy
-✓ Retinal Detachment
-✓ Macular Edema
-✓ Other retinal pathologies
-
-**How It Works:**
-1. Image preprocessing & enhancement
-2. Dual AI analysis
-3. Feature extraction & fusion
-4. Confidence scoring
-5. Detailed report generation
-
-Ready to experience AI-powered eye care?`,
-      category: 'ai-system'
-    },
-    'symptoms emergency': {
-      text: `🚨 **URGENT EYE SYMPTOMS - SEEK IMMEDIATE CARE**
-
-**Call 911 or Go to ER:**
-• Sudden complete vision loss
-• Severe eye pain with nausea/vomiting
-• Chemical burns to the eye
-• Traumatic eye injury
-• Sudden double vision with headache
-
-**Contact Eye Doctor Immediately:**
-• Sudden partial vision loss
-• New flashing lights or shower of floaters
-• Curtain-like shadow in vision
-• Sudden onset of severe light sensitivity
-• Eye pain with vision changes
-
-**Same-Day Appointment Needed:**
-• Gradual vision loss over days
-• Persistent eye pain
-• New distortion in central vision
-• Halos around lights at night
-• Discharge with vision changes
-
-**General Eye Health Tips:**
-• Never ignore sudden vision changes
-• Keep emergency eye care numbers handy
-• Protect eyes during sports/work
-• Know your family eye health history
-
-**Remember:** Time is vision - don't delay seeking care for concerning symptoms!`,
-      category: 'emergency'
-    },
-    'nutrition eye health': {
-      text: `🥗 **Nutrition for Optimal Eye Health**
-
-**Key Nutrients & Food Sources:**
-
-**Lutein & Zeaxanthin** (Macular protection):
-• Dark leafy greens (kale, spinach)
-• Broccoli, peas, corn
-• Egg yolks
-
-**Omega-3 Fatty Acids** (Retinal health):
-• Fatty fish (salmon, tuna, sardines)
-• Walnuts, flaxseeds
-• Chia seeds
-
-**Vitamin A** (Night vision):
-• Carrots, sweet potatoes
-• Liver, dairy products
-• Dark leafy greens
-
-**Vitamin C** (Antioxidant protection):
-• Citrus fruits, berries
-• Bell peppers, tomatoes
-• Broccoli, strawberries
-
-**Vitamin E** (Cell protection):
-• Nuts and seeds
-• Vegetable oils
-• Avocados
-
-**Zinc** (Retinal health):
-• Oysters, beef, pork
-• Beans, nuts
-• Whole grains
-
-**AREDS Formula Benefits:**
-Proven to reduce AMD progression by 25% in high-risk patients.
-
-**Hydration:** Adequate water intake supports tear production and eye moisture.`,
-      category: 'nutrition'
-    }
-  };
-
-  const getAIResponse = (userMessage: string): { text: string; category: string } => {
-    const message = userMessage.toLowerCase();
-    
-    if (message.includes('diabetic') || message.includes('diabetes')) {
-      return educationalResponses['diabetic retinopathy'];
-    } else if (message.includes('macular') || message.includes('amd')) {
-      return educationalResponses['macular degeneration'];
-    } else if (message.includes('glaucoma')) {
-      return educationalResponses['glaucoma'];
-    } else if (message.includes('hypertensive') || message.includes('blood pressure')) {
-      return educationalResponses['hypertensive retinopathy'];
-    } else if (message.includes('prevention') || message.includes('prevent') || message.includes('tips') || message.includes('care')) {
-      return educationalResponses['prevention'];
-    } else if (message.includes('nutrition') || message.includes('diet') || message.includes('food') || message.includes('vitamin')) {
-      return educationalResponses['nutrition eye health'];
-    } else if (message.includes('accuracy') || message.includes('model') || message.includes('technology') || (message.includes('ai') && !message.includes('pain'))) {
-      return educationalResponses['ai technology'];
-    } else if (message.includes('emergency') || message.includes('urgent') || message.includes('immediate') || message.includes('911')) {
-      return educationalResponses['symptoms emergency'];
-    } else if (message.includes('symptom') || message.includes('warning') || message.includes('sign') || message.includes('pain') || message.includes('loss')) {
-      return educationalResponses['symptoms emergency'];
-    } else if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
-      return {
-        text: `Hello! 👋 I'm Reti-Doc AI Assistant, your comprehensive guide to retinal health education!
-
-🏥 **I can help you with:**
-• **Retinal Diseases** - Diabetic retinopathy, AMD, glaucoma, hypertensive retinopathy
-• **Prevention & Care** - Evidence-based tips for optimal eye health
-• **AI Technology** - How our 96.1% accurate diagnostic system works
-• **Symptoms & Emergency Care** - When to seek immediate attention
-• **Nutrition** - Foods and nutrients that support eye health
-
-Choose a category above or ask me anything specific! Remember, I provide educational information but always consult healthcare professionals for medical advice.`,
-        category: 'welcome'
-      };
-    } else if (message.includes('help')) {
-      return {
-        text: `🔍 **I'm here to provide comprehensive retinal health education!**
-
-**My Knowledge Areas:**
-📚 **Disease Education** - Detailed information on retinal conditions
-🛡️ **Prevention Strategies** - Evidence-based eye health tips
-🤖 **AI Technology** - How our diagnostic system achieves 96.1% accuracy
-🚨 **Emergency Guidance** - When to seek immediate medical care
-🥗 **Nutrition** - Foods and supplements for eye health
-
-**Quick Start Options:**
-• Type "diabetic retinopathy" for diabetes-related eye complications
-• Ask "prevention tips" for eye health strategies
-• Say "AI technology" to learn about our diagnostic system
-• Type "emergency symptoms" for urgent warning signs
-
-What would you like to explore first?`,
-        category: 'help'
-      };
-    } else if (message.includes('reti-doc') || message.includes('platform') || message.includes('system')) {
-      return {
-        text: `🏥 **Welcome to Reti-Doc - Advanced AI Retinal Healthcare Platform**
-
-**Our Mission:** Democratizing eye health through AI-powered early detection and comprehensive education.
-
-**Platform Highlights:**
-• 96.1% diagnostic accuracy with dual AI architecture
-• Real-time analysis in <1 second
-• HIPAA-compliant and secure
-• 8+ detectable retinal conditions
-• Comprehensive educational resources
-
-**For Healthcare Providers:**
-✓ Clinical decision support
-✓ Standardized screening protocols
-✓ Patient management tools
-✓ Educational resources
-
-**For Patients:**
-✓ Early disease detection
-✓ Educational content library
-✓ Prevention guidance
-✓ Risk assessment tools
-
-Ready to experience the future of retinal healthcare? Ask me about any specific feature!`,
-        category: 'platform'
-      };
-    } else {
-      return {
-        text: `Thank you for your question! 💡 
-
-I specialize in retinal health education and can provide detailed information about:
-• **Retinal diseases** (diabetic retinopathy, AMD, glaucoma, etc.)
-• **Prevention strategies** and eye health tips
-• **Our AI diagnostic technology** and how it works
-• **Emergency symptoms** and when to seek care
-• **Nutrition** for optimal eye health
-
-Could you be more specific about what you'd like to learn? For immediate medical concerns, please contact your healthcare provider.
-
-**Helpful prompts to try:**
-- "Tell me about diabetic retinopathy"
-- "Eye health prevention tips"
-- "How does your AI work?"
-- "Emergency eye symptoms"`,
-        category: 'general'
-      };
-    }
-  };
 
   const callOpenAI = async (message: string): Promise<string> => {
     try {
@@ -484,6 +111,72 @@ Could you be more specific about what you'd like to learn? For immediate medical
       console.error('Error calling OpenAI:', error);
       return 'I\'m experiencing technical difficulties. Please try again or check our educational resources in the meantime.';
     }
+  };
+
+  const getFallbackResponse = (message: string): string => {
+    const msg = message.toLowerCase();
+    
+    if (msg.includes('cnv') || msg.includes('choroidal neovascularization')) {
+      return `🔍 **Choroidal Neovascularization (CNV)**
+
+CNV is abnormal blood vessel growth beneath the retina, commonly associated with wet AMD. It's characterized by:
+
+• **Severity**: Critical - requires immediate treatment
+• **Symptoms**: Sudden vision loss, distorted vision, central scotoma
+• **Treatment**: Anti-VEGF therapy, photodynamic therapy
+• **Prevention**: Regular monitoring, early detection
+
+Would you like to know more about CNV treatments or prevention strategies?`;
+    }
+    
+    if (msg.includes('dme') || msg.includes('diabetic macular edema')) {
+      return `💧 **Diabetic Macular Edema (DME)**
+
+DME involves fluid accumulation in the macula due to diabetes:
+
+• **Prevalence**: 7% of diabetic patients
+• **Symptoms**: Blurred central vision, reading difficulty
+• **Management**: Blood sugar control, anti-VEGF injections
+• **Stages**: Mild, moderate, severe, center-involving DME
+
+Early detection through regular eye exams is crucial!`;
+    }
+    
+    if (msg.includes('drusen')) {
+      return `⭐ **Drusen**
+
+Yellow deposits under the retina - early signs of AMD:
+
+• **Prevalence**: 30% of adults over 75
+• **Types**: Small (<63μm), medium (63-124μm), large (>125μm)
+• **Symptoms**: Usually asymptomatic initially
+• **Monitoring**: Regular Amsler grid testing, OCT scans
+
+Regular monitoring helps track progression to more serious conditions.`;
+    }
+    
+    if (msg.includes('normal') || msg.includes('healthy')) {
+      return `✅ **Normal (Healthy Retina)**
+
+Characteristics of a healthy retina:
+
+• **Blood vessels**: Normal caliber and appearance
+• **Macula**: Clear, well-defined structure
+• **Optic nerve**: Healthy appearance
+• **Vision**: Clear, undistorted
+
+Maintain retinal health through regular exams and healthy lifestyle choices!`;
+    }
+    
+    return `Thank you for your question! I specialize in retinal health education, particularly focusing on our four main conditions: CNV, DME, Drusen, and Normal retinal health. 
+
+I can provide information about:
+• **Disease characteristics** and symptoms
+• **Prevention strategies** and lifestyle tips  
+• **Our AI diagnostic technology** 
+• **When to seek medical care**
+
+Could you be more specific about what you'd like to learn? For urgent medical concerns, please contact your healthcare provider immediately.`;
   };
 
   const handleSendMessage = async (messageText?: string) => {
@@ -509,9 +202,7 @@ Could you be more specific about what you'd like to learn? For immediate medical
       if (useAI) {
         responseText = await callOpenAI(text);
       } else {
-        // Fallback to local responses
-        const response = getAIResponse(text);
-        responseText = response.text;
+        responseText = getFallbackResponse(text);
       }
 
       const aiResponse: Message = {
@@ -525,13 +216,13 @@ Could you be more specific about what you'd like to learn? For immediate medical
       setMessages(prev => [...prev, aiResponse]);
     } catch (error) {
       console.error('Error getting AI response:', error);
-      const fallbackResponse = getAIResponse(text);
+      const fallbackResponse = getFallbackResponse(text);
       const aiResponse: Message = {
         id: (Date.now() + 1).toString(),
-        text: fallbackResponse.text,
+        text: fallbackResponse,
         sender: 'bot',
         timestamp: new Date(),
-        category: fallbackResponse.category
+        category: 'general'
       };
       setMessages(prev => [...prev, aiResponse]);
     } finally {
@@ -611,53 +302,53 @@ Could you be more specific about what you'd like to learn? For immediate medical
             {showSuggestions && (
               <div className="p-3 sm:p-4 bg-muted/30 border-b border-border">
                 <div className="mb-4">
-                <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center">
-                  <Lightbulb className="h-4 w-4 mr-2 text-primary" />
-                  Choose a topic to get started:
-                </h3>
+                  <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center">
+                    <Lightbulb className="h-4 w-4 mr-2 text-primary" />
+                    Choose a topic to get started:
+                  </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-                  {categories.map((category) => (
-                    <Card 
-                      key={category.id}
-                      className={`cursor-pointer transition-all duration-200 hover:shadow-md hover:scale-[1.02] ${category.bgColor} ${category.borderColor} border-2`}
-                      onClick={() => handleCategorySelect(category.id)}
-                    >
-                      <CardContent className="p-3 sm:p-4">
-                        <div className="flex items-start space-x-2 sm:space-x-3">
-                          <div className={`p-2 rounded-lg ${category.bgColor}`}>
-                            <category.icon className={`h-4 w-4 sm:h-5 sm:w-5 ${category.color}`} />
+                    {categories.map((category) => (
+                      <Card 
+                        key={category.id}
+                        className={`cursor-pointer transition-all duration-200 hover:shadow-md hover:scale-[1.02] ${category.bgColor} ${category.borderColor} border-2`}
+                        onClick={() => handleCategorySelect(category.id)}
+                      >
+                        <CardContent className="p-3 sm:p-4">
+                          <div className="flex items-start space-x-2 sm:space-x-3">
+                            <div className={`p-2 rounded-lg ${category.bgColor}`}>
+                              <category.icon className={`h-4 w-4 sm:h-5 sm:w-5 ${category.color}`} />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <h4 className="font-semibold text-xs sm:text-sm text-foreground truncate">{category.label}</h4>
+                              <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{category.description}</p>
+                            </div>
                           </div>
-                          <div className="flex-1 min-w-0">
-                            <h4 className="font-semibold text-xs sm:text-sm text-foreground truncate">{category.label}</h4>
-                            <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{category.description}</p>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
                 </div>
-              </div>
-              
-              <Separator className="my-4" />
-              
+                
+                <Separator className="my-4" />
+                
                 <div>
                   <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center">
                     <Star className="h-4 w-4 mr-2 text-primary" />
                     Quick questions:
                   </h3>
                   <div className="flex flex-wrap gap-1 sm:gap-2">
-                  {quickSuggestions.map((suggestion, index) => (
-                    <Button
-                      key={index}
-                      variant="outline"
-                      size="sm"
-                      className="text-xs h-7 sm:h-8 hover:bg-primary hover:text-primary-foreground transition-all duration-200"
-                      onClick={() => handleSuggestionClick(suggestion.text, suggestion.category)}
-                    >
-                      {suggestion.text}
-                    </Button>
-                  ))}
-                </div>
+                    {quickSuggestions.map((suggestion, index) => (
+                      <Button
+                        key={index}
+                        variant="outline"
+                        size="sm"
+                        className="text-xs h-7 sm:h-8 hover:bg-primary hover:text-primary-foreground transition-all duration-200"
+                        onClick={() => handleSuggestionClick(suggestion.text, suggestion.category)}
+                      >
+                        {suggestion.text}
+                      </Button>
+                    ))}
+                  </div>
                 </div>
               </div>
             )}
@@ -683,11 +374,11 @@ Could you be more specific about what you'd like to learn? For immediate medical
                           ) : (
                             <User className="h-4 w-4 sm:h-5 sm:w-5" />
                           )}
-                      </div>
+                        </div>
                         <div className={`rounded-xl p-3 sm:p-4 shadow-sm ${
-                        message.sender === 'bot'
-                          ? 'bg-muted text-muted-foreground border border-border'
-                          : 'bg-primary text-primary-foreground'
+                          message.sender === 'bot'
+                            ? 'bg-muted text-muted-foreground border border-border'
+                            : 'bg-primary text-primary-foreground'
                         }`}>
                           {message.category && message.sender === 'bot' && message.category !== 'welcome' && (
                             <div className="flex items-center space-x-2 mb-2">
@@ -726,32 +417,32 @@ Could you be more specific about what you'd like to learn? For immediate medical
                       </div>
                     </div>
                   ))}
-                
-                {isTyping && (
-                  <div className="flex justify-start animate-fade-in">
-                    <div className="flex items-center space-x-3">
-                      <div className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground p-2 rounded-full">
-                        <Bot className="h-5 w-5" />
-                      </div>
-                      <div className="bg-muted text-muted-foreground rounded-xl p-4 border border-border">
-                        <div className="flex items-center space-x-2">
-                          <div className="flex space-x-1">
-                            <div className="w-2 h-2 bg-current rounded-full animate-pulse"></div>
-                            <div className="w-2 h-2 bg-current rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                            <div className="w-2 h-2 bg-current rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+                  
+                  {isTyping && (
+                    <div className="flex justify-start animate-fade-in">
+                      <div className="flex items-center space-x-3">
+                        <div className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground p-2 rounded-full">
+                          <Bot className="h-5 w-5" />
+                        </div>
+                        <div className="bg-muted text-muted-foreground rounded-xl p-4 border border-border">
+                          <div className="flex items-center space-x-2">
+                            <div className="flex space-x-1">
+                              <div className="w-2 h-2 bg-current rounded-full animate-pulse"></div>
+                              <div className="w-2 h-2 bg-current rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                              <div className="w-2 h-2 bg-current rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+                            </div>
+                            <span className="text-xs text-muted-foreground">AI is thinking...</span>
                           </div>
-                          <span className="text-xs text-muted-foreground">AI is thinking...</span>
                         </div>
                       </div>
                     </div>
-                  </div>
-                )}
-                <div ref={messagesEndRef} />
-              </div>
-            </ScrollArea>
-          </div>
+                  )}
+                  <div ref={messagesEndRef} />
+                </div>
+              </ScrollArea>
+            </div>
 
-          <div className="p-3 sm:p-4 border-t border-border bg-background">
+            <div className="p-3 sm:p-4 border-t border-border bg-background">
               {selectedCategory && (
                 <div className="mb-3">
                   <Badge variant="outline" className="text-xs">
