@@ -494,8 +494,8 @@ Could you be more specific about what you'd like to learn? For urgent medical co
                 </div>
               </div>
             </div>
-          )}
-        </CardContent>
+          </CardContent>
+        )}
       </Card>
     </div>
   );
