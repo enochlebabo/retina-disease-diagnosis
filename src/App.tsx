@@ -10,6 +10,7 @@ import LandingPage from "./pages/LandingPage";
 import About from "./pages/About";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import VisionAI from "./pages/VisionAI";
 import AdminLayout from "./layouts/AdminLayout";
 import UserLayout from "./layouts/UserLayout";
 import Dashboard from "./pages/admin/Dashboard";
@@ -39,7 +40,7 @@ const App = () => (
               <Route path="/about" element={<About />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
-              
+              <Route path="/vision-ai" element={<VisionAI />} />
               {/* Admin Routes */}
               <Route path="/admin/*" element={
                 <AuthGuard requiredRole="admin">

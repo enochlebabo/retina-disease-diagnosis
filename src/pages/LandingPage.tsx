@@ -12,14 +12,14 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import VisionChatBot from '@/components/VisionChatBot';
+
 import ModelUpload from '@/components/ModelUpload';
 
 const LandingPage = () => {
   const [activeTab, setActiveTab] = useState('overview');
   const [isScanning, setIsScanning] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isChatBotOpen, setIsChatBotOpen] = useState(false);
+  
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { theme, setTheme } = useTheme();
@@ -754,32 +754,6 @@ const LandingPage = () => {
           </div>
         )}
         
-        {/* Vision AI Chat Section */}
-        {activeTab === 'overview' && (
-          <div className="space-y-20">
-            <section className="py-20 px-4 sm:px-6 lg:px-8">
-              <div className="max-w-7xl mx-auto">
-                <div className="text-center mb-12">
-                  <Badge className="mb-4 px-4 py-2 text-sm font-medium bg-primary/10 text-primary border-primary/20">
-                    <Eye className="h-4 w-4 mr-2" />
-                    AI Vision Analysis
-                  </Badge>
-                  <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-                    AI-Powered Retinal Image Analysis
-                  </h2>
-                  <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-8">
-                    Upload retinal images and get instant AI-powered insights about CNV, DME, Drusen, and retinal health. 
-                    Our vision AI provides educational analysis to help you understand retinal conditions.
-                  </p>
-                </div>
-                
-                <div className="bg-slate-900/30 backdrop-blur-md rounded-3xl p-6 lg:p-8 border border-slate-700/50">
-                  <VisionChatBot isFullPage={false} className="w-full" />
-                </div>
-              </div>
-            </section>
-          </div>
-        )}
 
         {/* Remove scan and training tabs - they're now in user/admin dashboards */}
 
@@ -816,23 +790,6 @@ const LandingPage = () => {
           </div>
         )}
 
-        {/* Educational Floating ChatBot - Simplified */}
-        <div className="fixed bottom-6 right-6 z-50">
-          <Button
-            onClick={() => setIsChatBotOpen(!isChatBotOpen)}
-            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full w-16 h-16 shadow-lg hover:shadow-xl transition-all duration-300"
-          >
-            <Eye className="h-6 w-6" />
-          </Button>
-          
-          {isChatBotOpen && (
-            <div className="absolute bottom-20 right-0 w-96 max-w-[90vw] h-[600px] max-h-[80vh] bg-background border border-border rounded-lg shadow-2xl animate-scale-in overflow-hidden">
-              <div className="h-full">
-                <VisionChatBot isFullPage={true} />
-              </div>
-            </div>
-          )}
-        </div>
 
         {/* Contact Tab */}
         {activeTab === 'contact' && (
