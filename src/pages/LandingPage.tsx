@@ -200,15 +200,15 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-slate-900 to-cyan-900 dark:from-slate-950 dark:via-blue-950 dark:to-slate-900 text-white relative overflow-x-hidden">
-      {/* Tech Background Pattern */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-transparent to-cyan-600/20" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_50%)]" />
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-slate-950 dark:via-blue-950 dark:to-slate-900 text-foreground relative overflow-x-hidden">
+      {/* Light Background Pattern */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-100/30 via-transparent to-cyan-100/30" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.05),transparent_50%)]" />
       
       {/* Content */}
       <div className="relative z-10 w-full">
         {/* Modern Navigation */}
-        <nav className="bg-slate-900/80 backdrop-blur-lg shadow-xl border-b border-slate-700/50 sticky top-0 z-50">
+        <nav className="bg-white/90 backdrop-blur-lg shadow-lg border-b border-gray-200/50 sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               {/* Logo */}
@@ -217,8 +217,8 @@ const LandingPage = () => {
                   <Eye className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold text-white">Reti-Doc</h1>
-                  <p className="text-xs text-cyan-300 font-medium">AI-Powered Vision</p>
+                  <h1 className="text-xl font-bold text-gray-900">Reti-Doc</h1>
+                  <p className="text-xs text-primary font-medium">AI-Powered Vision</p>
                 </div>
               </div>
               
@@ -230,8 +230,8 @@ const LandingPage = () => {
                     onClick={() => setActiveTab(item.id)}
                     className={`flex items-center space-x-1 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                       activeTab === item.id
-                        ? 'bg-blue-600 text-white shadow-lg'
-                        : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                        ? 'bg-primary text-white shadow-lg'
+                        : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                     }`}
                   >
                     <item.icon className="h-4 w-4" />
@@ -246,7 +246,7 @@ const LandingPage = () => {
                   variant="outline"
                   size="sm"
                   onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                  className="p-2 border-slate-600 text-slate-300 hover:bg-slate-700"
+                  className="p-2 border-gray-300 text-gray-600 hover:bg-gray-100"
                 >
                   {theme === 'dark' ? (
                     <Sun className="h-4 w-4" />
@@ -255,12 +255,12 @@ const LandingPage = () => {
                   )}
                 </Button>
                 <Link to="/login">
-                  <Button variant="outline" size="sm" className="border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white">
+                  <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-white">
                     Sign In
                   </Button>
                 </Link>
                 <Link to="/register">
-                  <Button size="sm" className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white">
+                  <Button size="sm" className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white">
                     Start
                     <ArrowRight className="ml-1 h-3 w-3" />
                   </Button>
@@ -269,7 +269,7 @@ const LandingPage = () => {
 
               {/* Mobile Menu Button */}
               <button
-                className="md:hidden p-2 rounded-lg hover:bg-slate-800 text-white"
+                className="md:hidden p-2 rounded-lg hover:bg-gray-100 text-gray-900"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
                 {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -279,7 +279,7 @@ const LandingPage = () => {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-slate-700/50 bg-slate-900/95 backdrop-blur-lg">
+          <div className="md:hidden border-t border-gray-200/50 bg-white/95 backdrop-blur-lg">
             <div className="px-4 py-4 space-y-2">
               {navigation.map((item) => (
                 <button
@@ -290,20 +290,20 @@ const LandingPage = () => {
                   }}
                   className={`flex items-center space-x-3 w-full px-4 py-3 rounded-lg transition-all ${
                     activeTab === item.id
-                      ? 'bg-blue-600 text-white'
-                      : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                      ? 'bg-primary text-white'
+                      : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                   }`}
                 >
                   <item.icon className="h-5 w-5" />
                   <span>{item.name}</span>
                 </button>
               ))}
-              <div className="pt-4 border-t border-slate-700/50 space-y-2">
+              <div className="pt-4 border-t border-gray-200/50 space-y-2">
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                  className="w-full mb-2 border-slate-600 text-slate-300 hover:bg-slate-700"
+                  className="w-full mb-2 border-gray-300 text-gray-600 hover:bg-gray-100"
                 >
                   {theme === 'dark' ? (
                     <>
@@ -318,10 +318,10 @@ const LandingPage = () => {
                   )}
                 </Button>
                 <Link to="/login" className="block">
-                  <Button variant="outline" className="w-full border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white">Sign In</Button>
+                  <Button variant="outline" className="w-full border-primary text-primary hover:bg-primary hover:text-white">Sign In</Button>
                 </Link>
                 <Link to="/register" className="block">
-                  <Button className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white">Get Started</Button>
+                  <Button className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white">Get Started</Button>
                 </Link>
               </div>
             </div>
@@ -338,14 +338,14 @@ const LandingPage = () => {
                 AI-Powered Medical Diagnosis
               </Badge>
               
-              <h1 className="text-5xl lg:text-7xl font-bold text-foreground dark:text-white mb-8 leading-tight animate-fade-in">
+              <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-8 leading-tight animate-fade-in">
                 Revolutionizing <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary">
                   Retinal Healthcare
                 </span>
               </h1>
               
-              <p className="text-xl lg:text-2xl text-muted-foreground dark:text-slate-300 mb-12 max-w-4xl mx-auto leading-relaxed animate-fade-in">
+              <p className="text-xl lg:text-2xl text-gray-600 dark:text-slate-300 mb-12 max-w-4xl mx-auto leading-relaxed animate-fade-in">
                 Advanced AI-powered retinal disease detection using cutting-edge deep learning. 
                 Real-time camera scanning with <span className="text-primary font-semibold">96.1% accuracy</span> 
                 validated on medical datasets.
@@ -353,7 +353,7 @@ const LandingPage = () => {
               
               <div className="flex flex-col sm:flex-row justify-center gap-6 mb-16">
                 <Link to="/register">
-                  <Button size="lg" className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white text-lg px-8 py-4 h-auto shadow-lg">
+                  <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white text-lg px-8 py-4 h-auto shadow-lg">
                     Start Free Analysis
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
@@ -361,7 +361,7 @@ const LandingPage = () => {
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-slate-900 text-lg px-8 py-4 h-auto"
+                  className="border-primary text-primary hover:bg-primary hover:text-white text-lg px-8 py-4 h-auto"
                   onClick={() => setActiveTab('education')}
                 >
                   Learn More
@@ -378,8 +378,8 @@ const LandingPage = () => {
                         <stat.icon className="h-6 w-6 text-white" />
                       </div>
                     </div>
-                    <div className="text-3xl lg:text-4xl font-bold text-foreground dark:text-white">{stat.value}</div>
-                    <div className="text-sm text-muted-foreground dark:text-slate-300 font-medium">{stat.label}</div>
+                    <div className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">{stat.value}</div>
+                    <div className="text-sm text-gray-600 dark:text-slate-300 font-medium">{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -395,10 +395,10 @@ const LandingPage = () => {
             {/* About Section */}
             <section>
               <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
+                <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
                   About Reti-Doc
                 </h2>
-                <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
+                <p className="text-xl text-gray-600 dark:text-slate-300 max-w-4xl mx-auto leading-relaxed">
                   Reti-Doc is a revolutionary AI-powered medical diagnostic platform specifically designed 
                   for retinal disease detection and prevention. Our cutting-edge technology combines advanced 
                   machine learning algorithms with medical expertise to provide accurate, fast, and accessible 

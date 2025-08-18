@@ -99,8 +99,42 @@ const LoginPage = () => {
           <div className="mt-6 p-4 bg-blue-50 rounded-lg">
             <p className="text-sm text-blue-800 font-medium mb-2">Demo Accounts:</p>
             <p className="text-xs text-blue-700">Admin: admin@retinalai.com</p>
+            <p className="text-xs text-blue-700">Clinician: doctor@example.com</p>
             <p className="text-xs text-blue-700">User: user@retinalai.com</p>
             <p className="text-xs text-blue-700">Password: any password</p>
+          </div>
+          
+          <div className="mt-4 flex gap-2">
+            <button
+              type="button"
+              onClick={() => {
+                setEmail('admin@retinalai.com');
+                setPassword('admin123');
+              }}
+              className="flex-1 px-3 py-2 text-xs bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg hover:from-blue-600 hover:to-blue-700 transition-colors"
+            >
+              Admin Login
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setEmail('doctor@example.com');
+                setPassword('doctor123');
+              }}
+              className="flex-1 px-3 py-2 text-xs bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-colors"
+            >
+              Clinician Login
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setEmail('user@retinalai.com');
+                setPassword('user123');
+              }}
+              className="flex-1 px-3 py-2 text-xs bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-lg hover:from-purple-600 hover:to-purple-700 transition-colors"
+            >
+              User Login
+            </button>
           </div>
         </div>
       </div>
