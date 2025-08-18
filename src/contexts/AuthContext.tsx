@@ -5,13 +5,13 @@ interface User {
   id: string;
   email: string;
   name: string;
-  role: 'admin' | 'user';
+  role: 'admin' | 'user' | 'clinician';
 }
 
 interface AuthContextType {
   user: User | null;
   login: (email: string, password: string) => Promise<boolean>;
-  register: (email: string, password: string, name: string, role?: 'admin' | 'user') => Promise<boolean>;
+  register: (email: string, password: string, name: string, role?: 'admin' | 'user' | 'clinician') => Promise<boolean>;
   logout: () => void;
   isLoading: boolean;
 }
@@ -50,7 +50,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         id: '1',
         email,
         name: email.split('@')[0],
-        role: email.includes('admin') ? 'admin' : 'user'
+        role: email.includes('admin') ? 'admin' : email.includes('doctor') || email.includes('clinician') ? 'clinician' : 'user'
       };
       
       setUser(mockUser);
@@ -64,7 +64,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const register = async (email: string, password: string, name: string, role: 'admin' | 'user' = 'user'): Promise<boolean> => {
+  const register = async (email: string, password: string, name: string, role: 'admin' | 'user' | 'clinician' = 'user'): Promise<boolean> => {
     setIsLoading(true);
     try {
       // Simulate API call - replace with actual registration

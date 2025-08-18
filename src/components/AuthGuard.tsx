@@ -5,7 +5,7 @@ import { useAuth } from '../contexts/AuthContext';
 
 interface AuthGuardProps {
   children: React.ReactNode;
-  requiredRole?: 'admin' | 'user';
+  requiredRole?: 'admin' | 'user' | 'clinician';
   requireAuth?: boolean;
 }
 
@@ -31,7 +31,11 @@ const AuthGuard: React.FC<AuthGuardProps> = ({ children, requiredRole, requireAu
 
   if (requiredRole && user.role !== requiredRole) {
     // Redirect based on user role
-    const redirectPath = user.role === 'admin' ? '/admin/dashboard' : '/dashboard';
+    const redirectPath = user.role === 'admin' 
+      ? '/admin/dashboard' 
+      : user.role === 'clinician' 
+        ? '/clinician/dashboard' 
+        : '/dashboard';
     return <Navigate to={redirectPath} replace />;
   }
 

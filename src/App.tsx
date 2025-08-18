@@ -13,6 +13,7 @@ import RegisterPage from "./pages/RegisterPage";
 import VisionAI from "./pages/VisionAI";
 import AdminLayout from "./layouts/AdminLayout";
 import UserLayout from "./layouts/UserLayout";
+import ClinicianLayout from "./layouts/ClinicianLayout";
 import Dashboard from "./pages/admin/Dashboard";
 import AdminPatients from "./pages/admin/Patients";
 import AdminResults from "./pages/admin/Results";
@@ -22,6 +23,8 @@ import UserDashboard from "./pages/user/UserDashboard";
 import Analysis from "./pages/user/Analysis";
 import Education from "./pages/user/Education";
 import UserProfile from "./pages/user/UserProfile";
+import ClinicianDashboard from "./pages/clinician/Dashboard";
+import DiagnosisCenter from "./pages/clinician/DiagnosisCenter";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -54,6 +57,24 @@ const App = () => (
                       <Route path="*" element={<Dashboard />} />
                     </Routes>
                   </AdminLayout>
+                </AuthGuard>
+              } />
+
+              {/* Clinician Routes */}
+              <Route path="/clinician/*" element={
+                <AuthGuard requiredRole="clinician">
+                  <ClinicianLayout>
+                    <Routes>
+                      <Route path="dashboard" element={<ClinicianDashboard />} />
+                      <Route path="diagnosis" element={<DiagnosisCenter />} />
+                      <Route path="patients" element={<AdminPatients />} />
+                      <Route path="reports" element={<AdminResults />} />
+                      <Route path="appointments" element={<Dashboard />} />
+                      <Route path="research" element={<Education />} />
+                      <Route path="settings" element={<AdminSettings />} />
+                      <Route path="*" element={<ClinicianDashboard />} />
+                    </Routes>
+                  </ClinicianLayout>
                 </AuthGuard>
               } />
               
