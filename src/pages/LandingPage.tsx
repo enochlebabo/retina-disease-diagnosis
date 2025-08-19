@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import MedicalChatbot from '@/components/MedicalChatbot';
+import EmbeddedChatbot from '@/components/EmbeddedChatbot';
 
 const LandingPage = () => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -216,41 +217,70 @@ const LandingPage = () => {
 
       {/* Hero Section */}
       <section className="pt-24 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <Badge className="mb-8 px-6 py-2 text-base font-semibold bg-primary/10 text-primary border-primary/20">
-            <Activity className="h-5 w-5 mr-2" />
-            AI-Powered Medical Diagnosis
-          </Badge>
-          
-          <h1 className="text-5xl lg:text-7xl font-bold text-foreground mb-8 leading-tight">
-            Advanced Retinal
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
-              Health Analysis
-            </span>
-          </h1>
-          
-          <p className="text-xl lg:text-2xl text-muted-foreground mb-12 max-w-4xl mx-auto leading-relaxed">
-            Professional-grade AI-powered retinal disease detection using cutting-edge deep learning technology. 
-            Accurate, fast, and accessible eye health screening for medical professionals.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row justify-center gap-6 mb-20">
-            <Link to="/auth">
-              <Button size="lg" className="text-lg font-semibold px-8 py-6 h-auto shadow-lg">
-                Start Analysis
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="text-lg font-semibold px-8 py-6 h-auto"
-              onClick={() => setActiveTab('education')}
-            >
-              Learn More
-              <BookOpen className="ml-2 h-5 w-5" />
-            </Button>
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Left Side - Hero Content */}
+            <div className="text-center lg:text-left">
+              <Badge className="mb-8 px-6 py-2 text-base font-semibold bg-primary/10 text-primary border-primary/20">
+                <Activity className="h-5 w-5 mr-2" />
+                AI-Powered Medical Diagnosis
+              </Badge>
+              
+              <h1 className="text-4xl lg:text-6xl font-bold text-foreground mb-8 leading-tight">
+                Advanced Retinal
+                <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+                  Health Analysis
+                </span>
+              </h1>
+              
+              <p className="text-lg lg:text-xl text-muted-foreground mb-12 leading-relaxed">
+                Professional-grade AI-powered retinal disease detection using cutting-edge deep learning technology. 
+                Accurate, fast, and accessible eye health screening for medical professionals.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-6 mb-12">
+                <Link to="/auth">
+                  <Button size="lg" className="text-lg font-semibold px-8 py-6 h-auto shadow-lg">
+                    Start Analysis
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="text-lg font-semibold px-8 py-6 h-auto"
+                  onClick={() => setActiveTab('education')}
+                >
+                  Learn More
+                  <BookOpen className="ml-2 h-5 w-5" />
+                </Button>
+              </div>
+            </div>
+
+            {/* Right Side - Chatbot */}
+            <div className="lg:pl-8">
+              <Card className="h-[600px] shadow-xl border-0 bg-card/95 backdrop-blur-lg">
+                <CardHeader className="pb-3 border-b bg-primary text-primary-foreground">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8 bg-primary-foreground/20 rounded-lg flex items-center justify-center">
+                      <Brain className="h-4 w-4" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-base font-semibold">AI Medical Assistant</CardTitle>
+                      <p className="text-xs text-primary-foreground/80">Ask about retinal health</p>
+                    </div>
+                  </div>
+                </CardHeader>
+
+                <CardContent className="flex flex-col h-full p-0">
+                  {/* Embedded Chatbot Component */}
+                  <div className="flex-1">
+                    <EmbeddedChatbot className="h-full" />
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
