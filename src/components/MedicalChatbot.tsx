@@ -134,16 +134,6 @@ const MedicalChatbot: React.FC<MedicalChatbotProps> = ({
     ]);
   };
 
-  if (!isVisible) {
-    return (
-      <Button
-        onClick={() => setIsVisible(true)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-lg bg-primary hover:bg-primary/90"
-      >
-        <MessageSquare className="h-6 w-6" />
-      </Button>
-    );
-  }
 
   return (
     <Card className={`fixed ${isExpanded ? 'inset-4' : 'bottom-6 right-6 w-96 h-96'} z-50 shadow-xl border-0 bg-card/95 backdrop-blur-lg transition-all duration-300`}>
