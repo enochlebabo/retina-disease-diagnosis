@@ -56,7 +56,7 @@ const UserProfile = () => {
                     <User className="h-12 w-12 text-white" />
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900">{user?.name}</h2>
+                    <h2 className="text-2xl font-bold text-gray-900">{user?.profile?.display_name || user?.email}</h2>
                     <p className="text-gray-600">{user?.email}</p>
                     <span className="inline-block px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full mt-2">
                       Patient Account
@@ -70,7 +70,7 @@ const UserProfile = () => {
                       <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
                       <input
                         type="text"
-                        value={user?.name || ''}
+                        value={user?.profile?.display_name || ''}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       />
                     </div>

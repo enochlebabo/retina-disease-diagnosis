@@ -18,7 +18,7 @@ interface ClinicianLayoutProps {
 }
 
 const ClinicianLayout: React.FC<ClinicianLayoutProps> = ({ children }) => {
-  const { user, logout } = useAuth();
+  const { user, signOut } = useAuth();
 
   const navItems = [
     { path: '/clinician/dashboard', icon: BarChart3, label: 'Dashboard' },
@@ -66,12 +66,12 @@ const ClinicianLayout: React.FC<ClinicianLayoutProps> = ({ children }) => {
               </div>
               
               <div className="flex items-center space-x-3">
-                <span className="text-sm text-gray-600">
-                  Dr. {user?.name}
+                <span className="text-sm text-muted-foreground">
+                  Welcome, Dr. {user?.profile?.display_name || user?.email}
                 </span>
                 <button
-                  onClick={logout}
-                  className="flex items-center space-x-2 px-3 py-2 text-gray-600 hover:text-red-600 transition-colors"
+                  onClick={signOut}
+                  className="flex items-center space-x-2 px-3 py-2 text-destructive hover:text-destructive/80 transition-colors"
                 >
                   <LogOut className="h-4 w-4" />
                   <span className="text-sm">Logout</span>

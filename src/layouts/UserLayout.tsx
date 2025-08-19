@@ -9,7 +9,7 @@ interface UserLayoutProps {
 }
 
 const UserLayout: React.FC<UserLayoutProps> = ({ children }) => {
-  const { user, logout } = useAuth();
+  const { user, signOut } = useAuth();
 
   const navItems = [
     { path: '/dashboard', icon: Home, label: 'Dashboard' },
@@ -54,10 +54,12 @@ const UserLayout: React.FC<UserLayoutProps> = ({ children }) => {
               </div>
               
               <div className="flex items-center space-x-3 border-l pl-4">
-                <span className="text-sm text-gray-600">Hello, {user?.name}</span>
+                <span className="text-sm text-muted-foreground">
+                  Welcome, {user?.profile?.display_name || user?.email}
+                </span>
                 <button
-                  onClick={logout}
-                  className="flex items-center space-x-2 px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                  onClick={signOut}
+                  className="flex items-center space-x-2 px-3 py-2 text-destructive hover:text-destructive/80 rounded-lg transition-colors"
                 >
                   <LogOut className="h-4 w-4" />
                   <span className="text-sm">Logout</span>

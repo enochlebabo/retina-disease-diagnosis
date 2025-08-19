@@ -26,14 +26,15 @@ const AuthGuard: React.FC<AuthGuardProps> = ({ children, requiredRole, requireAu
   }
 
   if (!user) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/auth" replace />;
   }
 
-  if (requiredRole && user.role !== requiredRole) {
+  const userRole = user.profile?.role || 'user';
+  if (requiredRole && userRole !== requiredRole) {
     // Redirect based on user role
-    const redirectPath = user.role === 'admin' 
+    const redirectPath = userRole === 'admin' 
       ? '/admin/dashboard' 
-      : user.role === 'clinician' 
+      : userRole === 'clinician' 
         ? '/clinician/dashboard' 
         : '/dashboard';
     return <Navigate to={redirectPath} replace />;

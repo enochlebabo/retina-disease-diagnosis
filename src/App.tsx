@@ -8,8 +8,9 @@ import { AuthProvider } from "./contexts/AuthContext";
 import AuthGuard from "./components/AuthGuard";
 import LandingPage from "./pages/LandingPage";
 import About from "./pages/About";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
+import AuthPage from "./pages/AuthPage";
+import AuthCallback from "./pages/AuthCallback";
+import { Navigate } from "react-router-dom";
 import VisionAI from "./pages/VisionAI";
 import AdminLayout from "./layouts/AdminLayout";
 import UserLayout from "./layouts/UserLayout";
@@ -41,8 +42,10 @@ const App = () => (
               {/* Public Routes */}
               <Route path="/" element={<LandingPage />} />
               <Route path="/about" element={<About />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterPage />} />
+        <Route path="/auth" element={<AuthPage />} />
+        <Route path="/auth/callback" element={<AuthCallback />} />
+        <Route path="/login" element={<Navigate to="/auth" replace />} />
+        <Route path="/register" element={<Navigate to="/auth" replace />} />
               <Route path="/vision-ai" element={<VisionAI />} />
               {/* Admin Routes */}
               <Route path="/admin/*" element={

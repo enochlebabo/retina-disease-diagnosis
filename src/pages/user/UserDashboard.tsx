@@ -38,7 +38,7 @@ const UserDashboard = () => {
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Welcome Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome back, {user?.name}!</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome back, {user?.profile?.display_name || user?.email}!</h1>
           <p className="text-gray-600">Your retinal health dashboard and analysis tools</p>
         </div>
 
