@@ -10,10 +10,12 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import MedicalChatbot from '@/components/MedicalChatbot';
 
 const LandingPage = () => {
   const [activeTab, setActiveTab] = useState('overview');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isChatExpanded, setIsChatExpanded] = useState(false);
   const { theme, setTheme } = useTheme();
 
   const navigation = [
@@ -625,6 +627,12 @@ const LandingPage = () => {
           </div>
         </div>
       </footer>
+
+      {/* Medical Chatbot */}
+      <MedicalChatbot 
+        isExpanded={isChatExpanded}
+        onToggleExpand={() => setIsChatExpanded(!isChatExpanded)}
+      />
     </div>
   );
 };
