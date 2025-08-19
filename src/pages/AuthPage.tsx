@@ -286,13 +286,6 @@ const AuthPage = () => {
               </TabsContent>
             </Tabs>
 
-            {/* Demo Account Info */}
-            <div className="mt-6 p-4 bg-accent/10 rounded-lg border">
-              <p className="text-sm font-medium text-accent-foreground mb-2">Demo Account:</p>
-              <p className="text-xs text-muted-foreground">
-                Admin: enochlebabo@gmail.com (will receive OTP)
-              </p>
-            </div>
           </CardContent>
         </Card>
       </div>
