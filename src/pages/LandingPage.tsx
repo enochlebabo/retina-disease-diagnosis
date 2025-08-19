@@ -1,27 +1,19 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from 'next-themes';
 import { 
-  Eye, Brain, Zap, Shield, Target, Users, BarChart3, BookOpen, ArrowRight, 
-  CheckCircle, Camera, Upload, Activity, AlertTriangle, Heart, Microscope, 
-  Phone, Mail, MapPin, Play, Video, Server, Code, Database, Cpu, Cloud, 
-  Lock, Monitor, Bot, Stethoscope, Scan, ChevronRight, Star, Award, 
-  TrendingUp, MessageSquare, Clock, FileText, UserCheck, Wifi, Smartphone,
-  Github, Linkedin, Twitter, Globe, Menu, X, Sun, Moon
+  Eye, Brain, Zap, Shield, Target, Users, BookOpen, ArrowRight, 
+  CheckCircle, Camera, Upload, Activity, Heart, Microscope, 
+  Phone, Mail, MapPin, ChevronRight, Star, Award, 
+  Github, Linkedin, Twitter, Menu, X, Sun, Moon
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
-import ModelUpload from '@/components/ModelUpload';
-
 const LandingPage = () => {
   const [activeTab, setActiveTab] = useState('overview');
-  const [isScanning, setIsScanning] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const { theme, setTheme } = useTheme();
 
   const navigation = [
@@ -35,95 +27,75 @@ const LandingPage = () => {
   const features = [
     {
       icon: Brain,
-      title: 'Dual AI Architecture',
-      description: 'ResNet18 + DeiT Small ensemble model for superior accuracy in retinal disease detection.',
-      theme: 'medical',
-      metrics: '96% accuracy'
+      title: 'Advanced AI Analysis',
+      description: 'Cutting-edge deep learning models for precise retinal disease detection and classification.',
+      theme: 'medical'
     },
     {
       icon: Zap,
       title: 'Real-time Processing',
-      description: 'Instant analysis with live camera feed and immediate diagnostic results.',
-      theme: 'tech',
-      metrics: '< 1 second'
+      description: 'Instant analysis with immediate diagnostic results for faster clinical decisions.',
+      theme: 'tech'
     },
     {
       icon: Shield,
       title: 'Medical Grade Security',
-      description: 'HIPAA-compliant platform with end-to-end encryption and secure data handling.',
-      theme: 'neural',
-      metrics: '256-bit encryption'
+      description: 'HIPAA-compliant platform with enterprise-level security and data protection.',
+      theme: 'neural'
     },
     {
       icon: Target,
-      title: 'High Precision',
-      description: 'Validated on EyePACS dataset with comprehensive disease coverage.',
-      theme: 'medical',
-      metrics: '8 disease types'
+      title: 'Clinical Precision',
+      description: 'Validated diagnostic accuracy with comprehensive disease coverage and detection.',
+      theme: 'medical'
     }
   ];
 
   const primaryConditions = [
     {
-      title: 'Choroidal Neovascularization (CNV)',
-      description: 'Abnormal blood vessel growth beneath the retina, commonly associated with wet AMD.',
-      severity: 'Critical',
-      prevalence: '10-15% of AMD patients',
-      icon: AlertTriangle,
-      color: 'text-red-500',
-      bgColor: 'bg-red-50 dark:bg-red-950/20',
-      borderColor: 'border-red-200 dark:border-red-800',
-      symptoms: ['Sudden vision loss', 'Distorted vision', 'Central scotoma', 'Metamorphopsia'],
-      prevention: ['Regular monitoring', 'Anti-VEGF therapy', 'Early detection', 'Amsler grid testing'],
-      stages: ['Subfoveal CNV', 'Juxtafoveal CNV', 'Extrafoveal CNV', 'Occult CNV']
-    },
-    {
-      title: 'Diabetic Macular Edema (DME)',
-      description: 'Fluid accumulation in the macula due to diabetes, causing central vision impairment.',
-      severity: 'High',
-      prevalence: '7% of diabetic patients',
+      title: 'Diabetic Retinopathy',
+      description: 'Damage to blood vessels in the retina caused by diabetes, leading to vision impairment.',
+      severity: 'High Risk',
       icon: Eye,
-      color: 'text-orange-500',
-      bgColor: 'bg-orange-50 dark:bg-orange-950/20',
-      borderColor: 'border-orange-200 dark:border-orange-800',
-      symptoms: ['Blurred central vision', 'Color changes', 'Reading difficulty', 'Wavy lines'],
-      prevention: ['Blood sugar control', 'Regular eye exams', 'Blood pressure management', 'Lipid control'],
-      stages: ['Mild DME', 'Moderate DME', 'Severe DME', 'Center-involving DME']
+      color: 'text-red-500',
+      bgColor: 'bg-red-50',
+      borderColor: 'border-red-200',
+      symptoms: ['Blurred vision', 'Dark spots', 'Difficulty seeing colors', 'Vision loss'],
+      prevention: ['Blood sugar control', 'Regular eye exams', 'Blood pressure management', 'Healthy lifestyle']
     },
     {
-      title: 'Drusen',
-      description: 'Yellow deposits under the retina, early sign of age-related macular degeneration.',
-      severity: 'Moderate',
-      prevalence: '30% of adults over 75',
+      title: 'Age-related Macular Degeneration',
+      description: 'Progressive disease affecting the macula, causing central vision loss in older adults.',
+      severity: 'Progressive',
       icon: Target,
-      color: 'text-yellow-500',
-      bgColor: 'bg-yellow-50 dark:bg-yellow-950/20',
-      borderColor: 'border-yellow-200 dark:border-yellow-800',
-      symptoms: ['Usually asymptomatic', 'Gradual vision changes', 'Difficulty in low light', 'Mild central blur'],
-      prevention: ['Regular monitoring', 'Healthy diet', 'UV protection', 'Antioxidant supplements'],
-      stages: ['Small drusen (<63μm)', 'Medium drusen (63-124μm)', 'Large drusen (>125μm)', 'Confluent drusen']
+      color: 'text-orange-500',
+      bgColor: 'bg-orange-50',
+      borderColor: 'border-orange-200',
+      symptoms: ['Central vision loss', 'Distorted vision', 'Difficulty reading', 'Color perception changes'],
+      prevention: ['Regular monitoring', 'Healthy diet', 'UV protection', 'Smoking cessation']
     },
     {
-      title: 'Normal (Healthy Retina)',
-      description: 'Healthy retinal tissue with normal blood vessels, macula, and optic nerve appearance.',
-      severity: 'None',
-      prevalence: 'Baseline standard',
+      title: 'Glaucoma',
+      description: 'Group of eye diseases that damage the optic nerve, often associated with high eye pressure.',
+      severity: 'Progressive',
+      icon: Activity,
+      color: 'text-yellow-500',
+      bgColor: 'bg-yellow-50',
+      borderColor: 'border-yellow-200',
+      symptoms: ['Peripheral vision loss', 'Tunnel vision', 'Eye pain', 'Halos around lights'],
+      prevention: ['Regular eye pressure checks', 'Early detection', 'Medication compliance', 'Lifestyle modifications']
+    },
+    {
+      title: 'Healthy Retina',
+      description: 'Normal retinal structure with healthy blood vessels, macula, and optic nerve.',
+      severity: 'Healthy',
       icon: Heart,
       color: 'text-green-500',
-      bgColor: 'bg-green-50 dark:bg-green-950/20',
-      borderColor: 'border-green-200 dark:border-green-800',
-      symptoms: ['Clear vision', 'No distortion', 'Normal color perception', 'Comfortable vision'],
-      prevention: ['Annual eye exams', 'Healthy lifestyle', 'UV protection', 'Screen time management'],
-      stages: ['Optimal health', 'Age-appropriate changes', 'Preventive monitoring', 'Baseline documentation']
+      bgColor: 'bg-green-50',
+      borderColor: 'border-green-200',
+      symptoms: ['Clear vision', 'Normal color perception', 'No distortion', 'Comfortable vision'],
+      prevention: ['Annual eye exams', 'Healthy lifestyle', 'UV protection', 'Regular monitoring']
     }
-  ];
-
-
-  const stats = [
-    { value: '96.1%', label: 'AI Accuracy', icon: Target },
-    { value: '<1s', label: 'Analysis Time', icon: Clock },
-    { value: '8+', label: 'Disease Types', icon: FileText },
-    { value: '10K+', label: 'Scans Processed', icon: TrendingUp },
   ];
 
   const teamMembers = [
@@ -147,139 +119,71 @@ const LandingPage = () => {
     }
   ];
 
-  const startCamera = useCallback(async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ 
-        video: { facingMode: 'environment' } 
-      });
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-        setIsScanning(true);
-      }
-    } catch (error) {
-      console.error('Error accessing camera:', error);
-      alert('Camera access denied. Please allow camera permissions.');
-    }
-  }, []);
-
-  const stopCamera = useCallback(() => {
-    if (videoRef.current?.srcObject) {
-      const tracks = (videoRef.current.srcObject as MediaStream).getTracks();
-      tracks.forEach(track => track.stop());
-      videoRef.current.srcObject = null;
-      setIsScanning(false);
-    }
-  }, []);
-
-  const captureImage = useCallback(() => {
-    if (videoRef.current && canvasRef.current) {
-      const canvas = canvasRef.current;
-      const video = videoRef.current;
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
-      const ctx = canvas.getContext('2d');
-      ctx?.drawImage(video, 0, 0);
-      
-      setTimeout(() => {
-        alert('Analysis complete! Please register for detailed results.');
-      }, 2000);
-    }
-  }, []);
-
-  const getThemeClasses = (theme: string) => {
-    switch (theme) {
-      case 'medical':
-        return 'card-medical';
-      case 'tech':
-        return 'card-tech';
-      case 'neural':
-        return 'card-neural';
-      default:
-        return 'card-medical';
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-slate-950 dark:via-blue-950 dark:to-slate-900 text-foreground relative overflow-x-hidden">
-      {/* Light Background Pattern */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-100/30 via-transparent to-cyan-100/30" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.05),transparent_50%)]" />
-      
-      {/* Content */}
-      <div className="relative z-10 w-full">
-        {/* Modern Navigation */}
-        <nav className="bg-white/90 backdrop-blur-lg shadow-lg border-b border-gray-200/50 sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-16">
-              {/* Logo */}
-              <div className="flex items-center space-x-3">
-                <div className="bg-gradient-to-r from-blue-500 to-cyan-500 p-2 rounded-xl shadow-lg">
-                  <Eye className="h-6 w-6 text-white" />
-                </div>
-                <div>
-                  <h1 className="text-xl font-bold text-gray-900">Reti-Doc</h1>
-                  <p className="text-xs text-primary font-medium">AI-Powered Vision</p>
-                </div>
+    <div className="min-h-screen bg-background text-foreground">
+      {/* Navigation */}
+      <nav className="bg-card/95 backdrop-blur-lg shadow-lg border-b sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            {/* Logo */}
+            <div className="flex items-center space-x-3">
+              <div className="bg-primary p-2 rounded-xl shadow-lg">
+                <Eye className="h-6 w-6 text-primary-foreground" />
               </div>
-              
-              {/* Desktop Navigation */}
-              <div className="hidden md:flex items-center space-x-2">
-                {navigation.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => setActiveTab(item.id)}
-                    className={`flex items-center space-x-1 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                      activeTab === item.id
-                        ? 'bg-primary text-white shadow-lg'
-                        : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
-                    }`}
-                  >
-                    <item.icon className="h-4 w-4" />
-                    <span className="hidden lg:inline">{item.name}</span>
-                  </button>
-                ))}
+              <div>
+                <h1 className="text-xl font-bold text-foreground">RetinalAI</h1>
+                <p className="text-xs text-primary font-medium">Advanced Vision Care</p>
               </div>
-              
-              {/* Theme Toggle & Auth Buttons */}
-              <div className="hidden md:flex items-center space-x-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                  className="p-2 border-gray-300 text-gray-600 hover:bg-gray-100"
-                >
-                  {theme === 'dark' ? (
-                    <Sun className="h-4 w-4" />
-                  ) : (
-                    <Moon className="h-4 w-4" />
-                  )}
-                </Button>
-                <Link to="/login">
-                  <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-white">
-                    Sign In
-                  </Button>
-                </Link>
-                <Link to="/register">
-                  <Button size="sm" className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white">
-                    Start
-                    <ArrowRight className="ml-1 h-3 w-3" />
-                  </Button>
-                </Link>
-              </div>
-
-              {/* Mobile Menu Button */}
-              <button
-                className="md:hidden p-2 rounded-lg hover:bg-gray-100 text-gray-900"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              >
-                {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </button>
             </div>
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-2">
+              {navigation.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveTab(item.id)}
+                  className={`flex items-center space-x-1 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    activeTab === item.id
+                      ? 'bg-primary text-primary-foreground shadow-lg'
+                      : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                  }`}
+                >
+                  <item.icon className="h-4 w-4" />
+                  <span className="hidden lg:inline">{item.name}</span>
+                </button>
+              ))}
+            </div>
+            
+            {/* Theme Toggle & Auth Buttons */}
+            <div className="hidden md:flex items-center space-x-3">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              >
+                {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              </Button>
+              <Link to="/auth">
+                <Button className="text-base font-medium px-6">
+                  Get Started
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden p-2 rounded-lg hover:bg-muted"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
           </div>
+        </div>
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-200/50 bg-white/95 backdrop-blur-lg">
+          <div className="md:hidden border-t bg-card/95 backdrop-blur-lg">
             <div className="px-4 py-4 space-y-2">
               {navigation.map((item) => (
                 <button
@@ -290,38 +194,17 @@ const LandingPage = () => {
                   }}
                   className={`flex items-center space-x-3 w-full px-4 py-3 rounded-lg transition-all ${
                     activeTab === item.id
-                      ? 'bg-primary text-white'
-                      : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                      ? 'bg-primary text-primary-foreground'
+                      : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                   }`}
                 >
                   <item.icon className="h-5 w-5" />
-                  <span>{item.name}</span>
+                  <span className="text-base font-medium">{item.name}</span>
                 </button>
               ))}
-              <div className="pt-4 border-t border-gray-200/50 space-y-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                  className="w-full mb-2 border-gray-300 text-gray-600 hover:bg-gray-100"
-                >
-                  {theme === 'dark' ? (
-                    <>
-                      <Sun className="mr-2 h-4 w-4" />
-                      Light Mode
-                    </>
-                  ) : (
-                    <>
-                      <Moon className="mr-2 h-4 w-4" />
-                      Dark Mode
-                    </>
-                  )}
-                </Button>
-                <Link to="/login" className="block">
-                  <Button variant="outline" className="w-full border-primary text-primary hover:bg-primary hover:text-white">Sign In</Button>
-                </Link>
-                <Link to="/register" className="block">
-                  <Button className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white">Get Started</Button>
+              <div className="pt-4 border-t space-y-2">
+                <Link to="/auth" className="block">
+                  <Button className="w-full text-base font-medium">Get Started</Button>
                 </Link>
               </div>
             </div>
@@ -329,160 +212,111 @@ const LandingPage = () => {
         )}
       </nav>
 
-        {/* Hero Section */}
-        <section className="pt-20 pb-32 px-4 sm:px-6 lg:px-8 w-full">
-          <div className="max-w-7xl mx-auto w-full">
-            <div className="text-center mb-16 animate-fade-in">
-              <Badge className="mb-6 px-4 py-2 text-sm font-medium bg-primary/10 text-primary border-primary/20 animate-scale-in">
-                <Activity className="h-4 w-4 mr-2" />
-                AI-Powered Medical Diagnosis
-              </Badge>
-              
-              <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-8 leading-tight animate-fade-in">
-                Revolutionizing <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary">
-                  Retinal Healthcare
-                </span>
-              </h1>
-              
-              <p className="text-xl lg:text-2xl text-gray-600 dark:text-slate-300 mb-12 max-w-4xl mx-auto leading-relaxed animate-fade-in">
-                Advanced AI-powered retinal disease detection using cutting-edge deep learning. 
-                Real-time camera scanning with <span className="text-primary font-semibold">96.1% accuracy</span> 
-                validated on medical datasets.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row justify-center gap-6 mb-16">
-                <Link to="/register">
-                  <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white text-lg px-8 py-4 h-auto shadow-lg">
-                    Start Free Analysis
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="border-primary text-primary hover:bg-primary hover:text-white text-lg px-8 py-4 h-auto"
-                  onClick={() => setActiveTab('education')}
-                >
-                  Learn More
-                  <BookOpen className="ml-2 h-5 w-5" />
-                </Button>
-              </div>
-              
-              {/* Statistics */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto animate-fade-in">
-                {stats.map((stat, index) => (
-                  <div key={index} className="text-center animate-scale-in hover-scale">
-                    <div className="flex justify-center mb-2">
-                      <div className="bg-gradient-to-r from-primary to-accent p-3 rounded-full">
-                        <stat.icon className="h-6 w-6 text-white" />
-                      </div>
-                    </div>
-                    <div className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">{stat.value}</div>
-                    <div className="text-sm text-gray-600 dark:text-slate-300 font-medium">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
+      {/* Hero Section */}
+      <section className="pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto text-center">
+          <Badge className="mb-8 px-6 py-2 text-base font-semibold bg-primary/10 text-primary border-primary/20">
+            <Activity className="h-5 w-5 mr-2" />
+            AI-Powered Medical Diagnosis
+          </Badge>
+          
+          <h1 className="text-5xl lg:text-7xl font-bold text-foreground mb-8 leading-tight">
+            Advanced Retinal
+            <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+              Health Analysis
+            </span>
+          </h1>
+          
+          <p className="text-xl lg:text-2xl text-muted-foreground mb-12 max-w-4xl mx-auto leading-relaxed">
+            Professional-grade AI-powered retinal disease detection using cutting-edge deep learning technology. 
+            Accurate, fast, and accessible eye health screening for medical professionals.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row justify-center gap-6 mb-20">
+            <Link to="/auth">
+              <Button size="lg" className="text-lg font-semibold px-8 py-6 h-auto shadow-lg">
+                Start Analysis
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="text-lg font-semibold px-8 py-6 h-auto"
+              onClick={() => setActiveTab('education')}
+            >
+              Learn More
+              <BookOpen className="ml-2 h-5 w-5" />
+            </Button>
           </div>
-        </section>
+        </div>
+      </section>
 
       {/* Tab Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         {/* Overview Tab */}
         {activeTab === 'overview' && (
           <div className="space-y-20">
-            {/* About Section */}
+            {/* Features Section */}
             <section>
               <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                  About Reti-Doc
+                <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
+                  Why Choose RetinalAI
                 </h2>
-                <p className="text-xl text-gray-600 dark:text-slate-300 max-w-4xl mx-auto leading-relaxed">
-                  Reti-Doc is a revolutionary AI-powered medical diagnostic platform specifically designed 
-                  for retinal disease detection and prevention. Our cutting-edge technology combines advanced 
-                  machine learning algorithms with medical expertise to provide accurate, fast, and accessible 
-                  eye health screening.
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                  Advanced AI technology meets medical expertise for unparalleled retinal health analysis
                 </p>
               </div>
               
-              <div className="grid lg:grid-cols-3 gap-8 mb-16">
-                <Card className="bg-card/80 backdrop-blur border-primary/20">
-                  <CardHeader>
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                      <Target className="h-6 w-6 text-primary" />
-                    </div>
-                    <CardTitle className="text-foreground">Our Mission</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                      To democratize eye health screening and make early detection of retinal diseases 
-                      accessible to everyone, regardless of geographical or economic barriers.
-                    </p>
-                  </CardContent>
-                </Card>
-                
-                <Card className="bg-card/80 backdrop-blur border-accent/20">
-                  <CardHeader>
-                    <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
-                      <Shield className="h-6 w-6 text-accent" />
-                    </div>
-                    <CardTitle className="text-foreground">Our Vision</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                      A world where preventable vision loss is eliminated through AI-powered early 
-                      detection and comprehensive eye health education.
-                    </p>
-                  </CardContent>
-                </Card>
-                
-                <Card className="bg-card/80 backdrop-blur border-primary/20">
-                  <CardHeader>
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                      <Users className="h-6 w-6 text-primary" />
-                    </div>
-                    <CardTitle className="text-foreground">Our Impact</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                      Empowering healthcare providers and patients with accurate diagnostic tools 
-                      and educational resources for better eye health outcomes.
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-            </section>
-
-            {/* Core Features */}
-            <section>
-              <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-                  Advanced AI Technology
-                </h2>
-                <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-                  Dual AI architecture combining CNNs and Vision Transformers for unprecedented accuracy
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="grid lg:grid-cols-2 gap-8">
                 {features.map((feature, index) => (
-                  <Card key={index} className={`text-center hover:shadow-2xl transition-all duration-300 ${getThemeClasses(feature.theme)}`}>
+                  <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-0 bg-card/50 backdrop-blur">
                     <CardHeader className="pb-4">
-                      <div className={`gradient-${feature.theme} p-4 rounded-2xl w-16 h-16 mx-auto mb-4 shadow-lg`}>
-                        <feature.icon className="h-8 w-8 text-white" />
+                      <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                        <feature.icon className="h-7 w-7 text-primary" />
                       </div>
-                      <CardTitle className="text-lg font-bold">{feature.title}</CardTitle>
-                      <Badge variant="secondary" className="text-xs">{feature.metrics}</Badge>
+                      <CardTitle className="text-2xl font-bold text-foreground mb-3">
+                        {feature.title}
+                      </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <CardDescription className="text-sm leading-relaxed">{feature.description}</CardDescription>
+                      <CardDescription className="text-lg text-muted-foreground leading-relaxed">
+                        {feature.description}
+                      </CardDescription>
                     </CardContent>
                   </Card>
                 ))}
               </div>
             </section>
 
+            {/* How It Works */}
+            <section>
+              <div className="text-center mb-16">
+                <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
+                  How It Works
+                </h2>
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                  Simple, fast, and accurate retinal analysis in three easy steps
+                </p>
+              </div>
+              
+              <div className="grid md:grid-cols-3 gap-8">
+                {[
+                  { icon: Upload, title: 'Upload Image', description: 'Upload your retinal scan or fundus photograph' },
+                  { icon: Brain, title: 'AI Analysis', description: 'Our AI processes the image using advanced algorithms' },
+                  { icon: CheckCircle, title: 'Get Results', description: 'Receive detailed analysis and recommendations' }
+                ].map((step, index) => (
+                  <div key={index} className="text-center">
+                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                      <step.icon className="h-8 w-8 text-primary" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-foreground mb-4">{step.title}</h3>
+                    <p className="text-lg text-muted-foreground">{step.description}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
           </div>
         )}
 
@@ -491,94 +325,84 @@ const LandingPage = () => {
           <div className="space-y-20">
             <section>
               <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-                  About Reti-Doc
+                <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
+                  About RetinalAI
                 </h2>
-                <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-                  Pioneering the future of retinal healthcare through artificial intelligence
+                <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+                  RetinalAI is a revolutionary medical diagnostic platform designed for retinal disease detection and prevention. 
+                  Our technology combines advanced machine learning with medical expertise to provide accurate, fast, and accessible eye health screening.
                 </p>
               </div>
               
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div className="space-y-8">
-                  <div>
-                    <h3 className="text-3xl font-bold text-white mb-4">Our Mission</h3>
-                    <p className="text-slate-300 text-lg leading-relaxed">
-                      Reti-Doc revolutionizes retinal disease diagnosis by combining advanced artificial intelligence 
-                      with medical expertise. Our dual AI architecture delivers unparalleled accuracy in detecting 
-                      diabetic retinopathy, macular degeneration, glaucoma, and other critical eye conditions.
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <h3 className="text-3xl font-bold text-white mb-4">Our Vision</h3>
-                    <p className="text-slate-300 text-lg leading-relaxed">
-                      Making early detection accessible to healthcare providers worldwide, ultimately preventing vision 
-                      loss and improving patient outcomes through real-time AI-powered diagnosis.
-                    </p>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-6">
-                    <div className="card-medical p-6 text-center">
-                      <div className="text-3xl font-bold text-blue-600 mb-2">2024</div>
-                      <div className="text-sm text-slate-300">Founded</div>
+              <div className="grid lg:grid-cols-3 gap-8">
+                <Card className="border-0 bg-card/50 backdrop-blur">
+                  <CardHeader>
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                      <Target className="h-6 w-6 text-primary" />
                     </div>
-                    <div className="card-neural p-6 text-center">
-                      <div className="text-3xl font-bold text-cyan-600 mb-2">96.1%</div>
-                      <div className="text-sm text-slate-300">AI Accuracy</div>
+                    <CardTitle className="text-xl font-bold">Our Mission</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base leading-relaxed">
+                      To democratize access to advanced retinal health screening through AI technology, 
+                      enabling early detection and prevention of vision-threatening diseases.
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-0 bg-card/50 backdrop-blur">
+                  <CardHeader>
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                      <Microscope className="h-6 w-6 text-primary" />
                     </div>
-                  </div>
-                </div>
-                
-                <div className="card-tech p-8">
-                  <h3 className="text-2xl font-bold text-white mb-6">Technology Stack</h3>
-                  <div className="space-y-4">
-                    <div className="flex items-center space-x-3">
-                      <Brain className="h-6 w-6 text-blue-600" />
-                      <span className="text-slate-300 font-medium">ResNet18 + DeiT Small Ensemble</span>
+                    <CardTitle className="text-xl font-bold">Our Technology</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base leading-relaxed">
+                      State-of-the-art deep learning models trained on extensive medical datasets, 
+                      providing clinical-grade accuracy in retinal disease detection and classification.
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-0 bg-card/50 backdrop-blur">
+                  <CardHeader>
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                      <Heart className="h-6 w-6 text-primary" />
                     </div>
-                    <div className="flex items-center space-x-3">
-                      <Code className="h-6 w-6 text-purple-600" />
-                      <span className="text-slate-300 font-medium">React.js Frontend Architecture</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <Server className="h-6 w-6 text-green-600" />
-                      <span className="text-slate-300 font-medium">Flask Backend Infrastructure</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <Database className="h-6 w-6 text-orange-600" />
-                      <span className="text-slate-300 font-medium">PyTorch Deep Learning Framework</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <Cloud className="h-6 w-6 text-cyan-600" />
-                      <span className="text-slate-300 font-medium">Cloud-Native Deployment</span>
-                    </div>
-                  </div>
-                </div>
+                    <CardTitle className="text-xl font-bold">Our Impact</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base leading-relaxed">
+                      Empowering healthcare providers worldwide with accessible diagnostic tools, 
+                      improving patient outcomes through early detection and timely intervention.
+                    </CardDescription>
+                  </CardContent>
+                </Card>
               </div>
             </section>
 
             {/* Team Section */}
             <section>
               <div className="text-center mb-16">
-                <h2 className="text-4xl font-bold text-white mb-6">Our Expert Team</h2>
-                <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-                  World-class ophthalmologists and AI researchers working together
+                <h2 className="text-4xl font-bold text-foreground mb-6">Our Expert Team</h2>
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                  Leading medical professionals and AI researchers dedicated to advancing retinal healthcare
                 </p>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="grid md:grid-cols-3 gap-8">
                 {teamMembers.map((member, index) => (
-                  <Card key={index} className="card-medical text-center hover:shadow-xl transition-all duration-300">
+                  <Card key={index} className="text-center border-0 bg-card/50 backdrop-blur">
                     <CardHeader>
-                      <div className="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center">
-                        <UserCheck className="h-12 w-12 text-blue-600" />
+                      <div className="w-24 h-24 bg-primary/10 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <Users className="h-12 w-12 text-primary" />
                       </div>
                       <CardTitle className="text-xl font-bold">{member.name}</CardTitle>
-                      <p className="text-blue-600 font-medium">{member.role}</p>
+                      <CardDescription className="text-primary font-medium">{member.role}</CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-slate-300 text-sm">{member.bio}</p>
+                      <p className="text-muted-foreground">{member.bio}</p>
                     </CardContent>
                   </Card>
                 ))}
@@ -592,60 +416,28 @@ const LandingPage = () => {
           <div className="space-y-20">
             <section>
               <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-                  Powerful Features
+                <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
+                  Advanced Features
                 </h2>
-                <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-                  Comprehensive tools for retinal disease detection and management
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                  Comprehensive AI-powered analysis capabilities for professional retinal health assessment
                 </p>
               </div>
               
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="grid lg:grid-cols-2 gap-12">
                 {features.map((feature, index) => (
-                  <Card key={index} className={`hover:shadow-2xl transition-all duration-300 ${getThemeClasses(feature.theme)}`}>
-                    <CardHeader>
-                      <div className={`gradient-${feature.theme} p-4 rounded-2xl w-16 h-16 shadow-lg`}>
-                        <feature.icon className="h-8 w-8 text-white" />
+                  <Card key={index} className="border-0 bg-card/50 backdrop-blur p-8">
+                    <div className="flex items-start space-x-6">
+                      <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <feature.icon className="h-8 w-8 text-primary" />
                       </div>
-                      <CardTitle className="text-xl font-bold">{feature.title}</CardTitle>
-                      <Badge variant="secondary" className="w-fit">{feature.metrics}</Badge>
-                    </CardHeader>
-                    <CardContent>
-                      <CardDescription className="text-base leading-relaxed mb-4">
-                        {feature.description}
-                      </CardDescription>
-                      <Button className={`btn-${feature.theme} w-full`}>
-                        Learn More
-                        <ChevronRight className="ml-2 h-4 w-4" />
-                      </Button>
-                    </CardContent>
+                      <div>
+                        <h3 className="text-2xl font-bold text-foreground mb-4">{feature.title}</h3>
+                        <p className="text-lg text-muted-foreground leading-relaxed">{feature.description}</p>
+                      </div>
+                    </div>
                   </Card>
                 ))}
-              </div>
-            </section>
-
-            {/* Additional Features */}
-            <section>
-              <div className="text-center mb-16">
-                <h2 className="text-3xl font-bold text-white mb-6">Additional Capabilities</h2>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="card-medical p-6">
-                  <Smartphone className="h-8 w-8 text-blue-600 mb-4" />
-                  <h3 className="text-lg font-semibold mb-2">Mobile Compatible</h3>
-                  <p className="text-slate-300 text-sm">Access from any device with responsive design</p>
-                </div>
-                <div className="card-tech p-6">
-                  <Wifi className="h-8 w-8 text-purple-600 mb-4" />
-                  <h3 className="text-lg font-semibold mb-2">Real-time Updates</h3>
-                  <p className="text-slate-300 text-sm">Live streaming and instant analysis results</p>
-                </div>
-                <div className="card-neural p-6">
-                  <MessageSquare className="h-8 w-8 text-cyan-600 mb-4" />
-                  <h3 className="text-lg font-semibold mb-2">AI Chatbot</h3>
-                  <p className="text-slate-300 text-sm">24/7 medical guidance and consultation</p>
-                </div>
               </div>
             </section>
           </div>
@@ -656,294 +448,183 @@ const LandingPage = () => {
           <div className="space-y-20">
             <section>
               <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-                  Retinal Disease Education
+                <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
+                  Retinal Health Education
                 </h2>
-                <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-                  Understanding common retinal conditions and their implications
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                  Learn about common retinal conditions and the importance of early detection
                 </p>
               </div>
               
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="grid lg:grid-cols-2 gap-8">
                 {primaryConditions.map((condition, index) => (
-                  <Card key={index} className={`hover:shadow-xl transition-all duration-300 ${condition.bgColor} border-2 ${condition.borderColor}`}>
-                    <CardHeader>
-                      <div className="flex items-center space-x-4">
-                        <div className={`${condition.bgColor} p-3 rounded-2xl border ${condition.borderColor}`}>
-                          <condition.icon className={`h-8 w-8 ${condition.color}`} />
+                  <Card key={index} className={`border-0 ${condition.bgColor} backdrop-blur p-6`}>
+                    <CardHeader className="pb-4">
+                      <div className="flex items-center space-x-4 mb-4">
+                        <div className={`w-12 h-12 ${condition.bgColor} rounded-lg flex items-center justify-center`}>
+                          <condition.icon className={`h-6 w-6 ${condition.color}`} />
                         </div>
                         <div>
                           <CardTitle className="text-xl font-bold text-foreground">{condition.title}</CardTitle>
-                          <Badge variant="outline" className={`${condition.color} border-current`}>
-                            {condition.severity} {condition.severity !== 'None' ? 'Risk' : ''}
-                          </Badge>
+                          <Badge variant="secondary" className="mt-1">{condition.severity}</Badge>
                         </div>
                       </div>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <p className="text-muted-foreground leading-relaxed">{condition.description}</p>
-                      
-                      {/* Symptoms */}
-                      <div>
-                        <h4 className="font-semibold text-foreground mb-2">
-                          {condition.title.includes('Normal') ? 'Characteristics:' : 'Symptoms:'}
-                        </h4>
-                        <ul className="text-sm text-muted-foreground space-y-1">
-                          {condition.symptoms.map((symptom, i) => (
-                            <li key={i} className="flex items-center">
-                              <span className="w-1.5 h-1.5 bg-current rounded-full mr-2"></span>
-                              {symptom}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      
-                      {/* Prevention */}
-                      <div>
-                        <h4 className="font-semibold text-foreground mb-2">
-                          {condition.title.includes('Normal') ? 'Maintenance:' : 'Prevention:'}
-                        </h4>
-                        <ul className="text-sm text-muted-foreground space-y-1">
-                          {condition.prevention.map((tip, i) => (
-                            <li key={i} className="flex items-center">
-                              <span className="w-1.5 h-1.5 bg-current rounded-full mr-2"></span>
-                              {tip}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      
-                      <div className="flex items-center justify-between pt-2 border-t border-border">
-                        <div className="text-sm text-muted-foreground">
-                          <strong>Prevalence:</strong> {condition.prevalence}
-                        </div>
-                        <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                          Ask AI Assistant
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </section>
-
-            {/* Prevention Tips */}
-            <section>
-              <div className="text-center mb-16">
-                <h2 className="text-3xl font-bold text-white mb-6">Prevention & Care</h2>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="card-medical p-6">
-                  <Eye className="h-8 w-8 text-blue-600 mb-4" />
-                  <h3 className="text-lg font-semibold mb-2">Regular Eye Exams</h3>
-                  <p className="text-slate-300 text-sm">Annual comprehensive eye exams for early detection</p>
-                </div>
-                <div className="card-tech p-6">
-                  <Heart className="h-8 w-8 text-purple-600 mb-4" />
-                  <h3 className="text-lg font-semibold mb-2">Manage Diabetes</h3>
-                  <p className="text-slate-300 text-sm">Blood sugar control reduces retinopathy risk</p>
-                </div>
-                <div className="card-neural p-6">
-                  <Shield className="h-8 w-8 text-cyan-600 mb-4" />
-                  <h3 className="text-lg font-semibold mb-2">UV Protection</h3>
-                  <p className="text-slate-300 text-sm">Sunglasses protect against harmful UV rays</p>
-                </div>
-              </div>
-            </section>
-          </div>
-        )}
-        
-
-        {/* Remove scan and training tabs - they're now in user/admin dashboards */}
-
-        {/* Features Tab */}
-        {activeTab === 'features' && (
-          <div className="space-y-20 py-20 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto">
-              <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-                  Advanced Features
-                </h2>
-                <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-                  Cutting-edge AI technology for comprehensive retinal health analysis
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {features.map((feature, index) => (
-                  <Card key={index} className={`hover:shadow-2xl transition-all duration-300 ${getThemeClasses(feature.theme)}`}>
-                    <CardHeader>
-                      <div className={`gradient-${feature.theme} p-4 rounded-2xl shadow-lg mb-4 w-fit`}>
-                        <feature.icon className="h-8 w-8 text-white" />
-                      </div>
-                      <CardTitle className="text-xl font-bold">{feature.title}</CardTitle>
-                      <CardDescription className="text-muted-foreground">{feature.description}</CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <div className="text-2xl font-bold text-primary mb-2">{feature.metrics}</div>
+                      <CardDescription className="text-base text-muted-foreground mb-6 leading-relaxed">
+                        {condition.description}
+                      </CardDescription>
+                      
+                      <div className="space-y-4">
+                        <div>
+                          <h4 className="font-semibold text-foreground mb-2">Common Symptoms:</h4>
+                          <ul className="text-sm text-muted-foreground space-y-1">
+                            {condition.symptoms.map((symptom, idx) => (
+                              <li key={idx} className="flex items-center">
+                                <div className="w-1.5 h-1.5 bg-primary rounded-full mr-2" />
+                                {symptom}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        
+                        <div>
+                          <h4 className="font-semibold text-foreground mb-2">Prevention & Care:</h4>
+                          <ul className="text-sm text-muted-foreground space-y-1">
+                            {condition.prevention.map((prevention, idx) => (
+                              <li key={idx} className="flex items-center">
+                                <CheckCircle className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+                                {prevention}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
                     </CardContent>
                   </Card>
                 ))}
               </div>
-            </div>
+            </section>
           </div>
         )}
-
 
         {/* Contact Tab */}
         {activeTab === 'contact' && (
-          <div className="space-y-20 py-20 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto">
+          <div className="space-y-20">
+            <section>
               <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-                  Get in Touch
+                <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
+                  Contact Us
                 </h2>
-                <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-                  Ready to revolutionize your retinal care? Contact our team today
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                  Get in touch with our team for support, partnerships, or more information
                 </p>
               </div>
               
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                <div className="space-y-8">
-                  <div className="card-medical p-8">
-                    <h3 className="text-2xl font-bold text-white mb-6">Contact Information</h3>
-                    <div className="space-y-4">
-                      <div className="flex items-center space-x-3">
-                        <Phone className="h-6 w-6 text-blue-600" />
-                        <span className="text-slate-300">+1 (555) 123-4567</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <Mail className="h-6 w-6 text-blue-600" />
-                        <span className="text-slate-300">contact@reti-doc.com</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <MapPin className="h-6 w-6 text-blue-600" />
-                        <span className="text-slate-300">123 Medical Center Dr, Healthcare City, HC 12345</span>
-                      </div>
-                    </div>
+              <div className="grid lg:grid-cols-3 gap-8">
+                <Card className="text-center border-0 bg-card/50 backdrop-blur p-8">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Mail className="h-8 w-8 text-primary" />
                   </div>
-                  
-                  <div className="card-tech p-8">
-                    <h3 className="text-2xl font-bold text-white mb-6">Business Hours</h3>
-                    <div className="space-y-2 text-slate-300">
-                      <div className="flex justify-between">
-                        <span>Monday - Friday:</span>
-                        <span>9:00 AM - 6:00 PM</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Saturday:</span>
-                        <span>10:00 AM - 4:00 PM</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Sunday:</span>
-                        <span>Closed</span>
-                      </div>
-                    </div>
+                  <CardTitle className="text-xl font-bold mb-4">Email Support</CardTitle>
+                  <CardDescription className="text-base">
+                    support@retinalai.com
+                    <br />
+                    Available 24/7 for technical support
+                  </CardDescription>
+                </Card>
+
+                <Card className="text-center border-0 bg-card/50 backdrop-blur p-8">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Phone className="h-8 w-8 text-primary" />
                   </div>
-                </div>
-                
-                <div className="card-neural p-8">
-                  <h3 className="text-2xl font-bold text-white mb-6">Send us a Message</h3>
-                  <form className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-white mb-2">Name</label>
-                      <input 
-                        type="text" 
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Your full name"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-white mb-2">Email</label>
-                      <input 
-                        type="email" 
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="your@email.com"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-white mb-2">Message</label>
-                      <textarea 
-                        rows={4}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="How can we help you?"
-                      />
-                    </div>
-                    <Button className="btn-neural w-full">
-                      Send Message
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </form>
-                </div>
+                  <CardTitle className="text-xl font-bold mb-4">Phone Support</CardTitle>
+                  <CardDescription className="text-base">
+                    +1 (555) 123-4567
+                    <br />
+                    Monday - Friday, 9 AM - 6 PM EST
+                  </CardDescription>
+                </Card>
+
+                <Card className="text-center border-0 bg-card/50 backdrop-blur p-8">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <MapPin className="h-8 w-8 text-primary" />
+                  </div>
+                  <CardTitle className="text-xl font-bold mb-4">Office Location</CardTitle>
+                  <CardDescription className="text-base">
+                    123 Medical AI Drive
+                    <br />
+                    San Francisco, CA 94105
+                  </CardDescription>
+                </Card>
               </div>
-            </div>
+            </section>
           </div>
         )}
       </div>
 
-        {/* Footer */}
-        <footer className="bg-gray-900 text-white py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              <div>
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className="gradient-medical p-2 rounded-lg">
-                    <Eye className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold">Reti-Doc</h3>
-                    <p className="text-sm text-gray-400">AI-Powered Retinal Intelligence</p>
-                  </div>
+      {/* Footer */}
+      <footer className="bg-card border-t mt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="grid md:grid-cols-4 gap-8">
+            {/* Company Info */}
+            <div className="md:col-span-2">
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="bg-primary p-2 rounded-xl">
+                  <Eye className="h-6 w-6 text-primary-foreground" />
                 </div>
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  Revolutionizing retinal healthcare through advanced artificial intelligence and medical expertise.
-                </p>
-              </div>
-              
-              <div>
-                <h4 className="text-lg font-semibold mb-4">Product</h4>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
-                  <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
-                  <li><a href="#" className="hover:text-white transition-colors">API</a></li>
-                  <li><a href="#" className="hover:text-white transition-colors">Documentation</a></li>
-                </ul>
-              </div>
-              
-              <div>
-                <h4 className="text-lg font-semibold mb-4">Company</h4>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li><a href="#" className="hover:text-white transition-colors">About</a></li>
-                  <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-                  <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
-                  <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-                </ul>
-              </div>
-              
-              <div>
-                <h4 className="text-lg font-semibold mb-4">Connect</h4>
-                <div className="flex space-x-4">
-                  <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                    <Twitter className="h-5 w-5" />
-                  </a>
-                  <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                    <Github className="h-5 w-5" />
-                  </a>
-                  <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                    <Linkedin className="h-5 w-5" />
-                  </a>
+                <div>
+                  <h3 className="text-xl font-bold text-foreground">RetinalAI</h3>
+                  <p className="text-sm text-primary">Advanced Vision Care</p>
                 </div>
+              </div>
+              <p className="text-muted-foreground mb-6 max-w-md">
+                Revolutionizing retinal healthcare through advanced AI technology. 
+                Accurate, fast, and accessible eye health screening for medical professionals worldwide.
+              </p>
+              <div className="flex space-x-4">
+                <Button variant="outline" size="sm">
+                  <Github className="h-4 w-4" />
+                </Button>
+                <Button variant="outline" size="sm">
+                  <Twitter className="h-4 w-4" />
+                </Button>
+                <Button variant="outline" size="sm">
+                  <Linkedin className="h-4 w-4" />
+                </Button>
               </div>
             </div>
-            
-            <div className="border-t border-gray-800 mt-12 pt-8 text-center text-sm text-gray-400">
-              <p>&copy; 2024 Reti-Doc. All rights reserved. | Privacy Policy | Terms of Service</p>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="text-lg font-semibold text-foreground mb-4">Quick Links</h4>
+              <ul className="space-y-2 text-muted-foreground">
+                <li><button onClick={() => setActiveTab('about')} className="hover:text-primary transition-colors">About</button></li>
+                <li><button onClick={() => setActiveTab('features')} className="hover:text-primary transition-colors">Features</button></li>
+                <li><button onClick={() => setActiveTab('education')} className="hover:text-primary transition-colors">Education</button></li>
+                <li><button onClick={() => setActiveTab('contact')} className="hover:text-primary transition-colors">Contact</button></li>
+              </ul>
+            </div>
+
+            {/* Support */}
+            <div>
+              <h4 className="text-lg font-semibold text-foreground mb-4">Support</h4>
+              <ul className="space-y-2 text-muted-foreground">
+                <li><Link to="/auth" className="hover:text-primary transition-colors">Get Started</Link></li>
+                <li><a href="mailto:support@retinalai.com" className="hover:text-primary transition-colors">Help Center</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">Privacy Policy</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">Terms of Service</a></li>
+              </ul>
             </div>
           </div>
-        </footer>
-      </div>
 
+          <div className="border-t pt-8 mt-8 text-center">
+            <p className="text-muted-foreground">
+              © 2024 RetinalAI. All rights reserved. | Advanced AI-powered retinal health analysis platform.
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
